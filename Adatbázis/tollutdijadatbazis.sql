@@ -1,0 +1,511 @@
+-- phpMyAdmin SQL Dump
+-- version 5.2.2
+-- https://www.phpmyadmin.net/
+--
+-- Gép: localhost
+-- Létrehozás ideje: 2025. Nov 12. 11:52
+-- Kiszolgáló verziója: 8.0.42
+-- PHP verzió: 8.2.29
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+START TRANSACTION;
+SET time_zone = "+00:00";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
+
+--
+-- Adatbázis: `tollutdijadatbazis`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Tábla szerkezet ehhez a táblához `cegek`
+--
+
+CREATE TABLE `cegek` (
+  `id` int NOT NULL,
+  `nev` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `adoszam` varchar(50) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `cim` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `statusz` varchar(50) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- A tábla adatainak kiíratása `cegek`
+--
+
+INSERT INTO `cegek` (`id`, `nev`, `adoszam`, `cim`, `statusz`, `created_at`) VALUES
+(1, 'Demo Cég', '12345678-1-12', '1234 Budapest, Demo utca 1.', 'aktiv', '2025-11-12 11:07:09');
+
+-- --------------------------------------------------------
+
+--
+-- Tábla szerkezet ehhez a táblához `felhasznalok`
+--
+
+CREATE TABLE `felhasznalok` (
+  `id` int NOT NULL,
+  `ceg_id` int DEFAULT NULL,
+  `email` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `jelszo_hash` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `teljes_nev` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `aktiv` tinyint(1) DEFAULT '1',
+  `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- A tábla adatainak kiíratása `felhasznalok`
+--
+
+INSERT INTO `felhasznalok` (`id`, `ceg_id`, `email`, `jelszo_hash`, `teljes_nev`, `aktiv`, `created_at`) VALUES
+(2, 1, 'placeholder@demo.hu', 'demo_hash', 'Demo Felhasználó', 1, '2025-11-12 11:07:18');
+
+-- --------------------------------------------------------
+
+--
+-- Tábla szerkezet ehhez a táblához `jarmuvek`
+--
+
+CREATE TABLE `jarmuvek` (
+  `id` int NOT NULL,
+  `ceg_id` int DEFAULT NULL,
+  `kategoria` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `marka` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `tipus` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `tengelyszam` int DEFAULT NULL,
+  `rendszam` varchar(20) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `vin` varchar(50) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `euro_besorolas` varchar(20) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `ossztomeg_kg` int DEFAULT NULL,
+  `potkocsi_kepes` tinyint(1) DEFAULT '0',
+  `device_id` int DEFAULT NULL,
+  `aktiv` tinyint(1) DEFAULT '1'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Tábla szerkezet ehhez a táblához `jogositvanyok`
+--
+
+CREATE TABLE `jogositvanyok` (
+  `id` int NOT NULL,
+  `sofor_id` int DEFAULT NULL,
+  `kategoria` varchar(10) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `erv_tol` date DEFAULT NULL,
+  `erv_ig` date DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Tábla szerkezet ehhez a táblához `menetlevelek`
+--
+
+CREATE TABLE `menetlevelek` (
+  `id` int NOT NULL,
+  `sofor_id` int DEFAULT NULL,
+  `jarmu_id` int DEFAULT NULL,
+  `device_id` int DEFAULT NULL,
+  `start_idopont` timestamp NULL DEFAULT NULL,
+  `end_idopont` timestamp NULL DEFAULT NULL,
+  `start_azon_id` int DEFAULT NULL,
+  `end_azon_id` int DEFAULT NULL,
+  `start_location` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `end_location` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Tábla szerkezet ehhez a táblához `rfid_azonositasok`
+--
+
+CREATE TABLE `rfid_azonositasok` (
+  `id` int NOT NULL,
+  `device_id` int DEFAULT NULL,
+  `kartya_id` int DEFAULT NULL,
+  `sofor_id` int DEFAULT NULL,
+  `eredmeny` tinyint(1) DEFAULT NULL,
+  `hibakod` varchar(50) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `idobelyeg` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `megjegyzes` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Tábla szerkezet ehhez a táblához `rfid_kartyak`
+--
+
+CREATE TABLE `rfid_kartyak` (
+  `id` int NOT NULL,
+  `uid_hex` varchar(100) COLLATE utf8mb4_general_ci NOT NULL,
+  `tipus` varchar(50) COLLATE utf8mb4_general_ci DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Tábla szerkezet ehhez a táblához `rfid_kartya_hozzarendeles`
+--
+
+CREATE TABLE `rfid_kartya_hozzarendeles` (
+  `id` int NOT NULL,
+  `kartya_id` int DEFAULT NULL,
+  `sofor_id` int DEFAULT NULL,
+  `erv_tol` timestamp NULL DEFAULT NULL,
+  `erv_ig` timestamp NULL DEFAULT NULL,
+  `aktiv` tinyint(1) DEFAULT '1'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Tábla szerkezet ehhez a táblához `soforok`
+--
+
+CREATE TABLE `soforok` (
+  `id` int NOT NULL,
+  `ceg_id` int DEFAULT NULL,
+  `szemelyi_azonosito` varchar(50) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `nev` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `szuletesi_datum` date DEFAULT NULL,
+  `telefonszam` varchar(50) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `cim` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `adoszam` varchar(50) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `aktiv` tinyint(1) DEFAULT '1',
+  `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Tábla szerkezet ehhez a táblához `trackereszkozok`
+--
+
+CREATE TABLE `trackereszkozok` (
+  `id` int NOT NULL,
+  `imei` varchar(50) COLLATE utf8mb4_general_ci NOT NULL,
+  `sim_iccid` varchar(50) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `modell` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `firmware_verzio` varchar(50) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `aktiv` tinyint(1) DEFAULT '1',
+  `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Tábla szerkezet ehhez a táblához `tracker_poziciok`
+--
+
+CREATE TABLE `tracker_poziciok` (
+  `id` int NOT NULL,
+  `device_id` int DEFAULT NULL,
+  `menetlevel_id` int DEFAULT NULL,
+  `idobelyeg` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `lat` float DEFAULT NULL,
+  `lon` float DEFAULT NULL,
+  `sebesseg_kmh` float DEFAULT NULL,
+  `nyers_payload` text COLLATE utf8mb4_general_ci
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Tábla szerkezet ehhez a táblához `utdij_kalkulaciok`
+--
+
+CREATE TABLE `utdij_kalkulaciok` (
+  `id` int NOT NULL,
+  `menetlevel_id` int DEFAULT NULL,
+  `jarmu_id` int DEFAULT NULL,
+  `ut_id` int DEFAULT NULL,
+  `szolgaltato` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `osszeg_brutto` decimal(12,2) DEFAULT NULL,
+  `penznem` varchar(10) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `kalkulalt_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Tábla szerkezet ehhez a táblához `utvonalak`
+--
+
+CREATE TABLE `utvonalak` (
+  `id` int NOT NULL,
+  `indulasi_pont` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `erkezesi_pont` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `tavolsag_m` int DEFAULT NULL,
+  `tervezet_gpx` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `letrehozva_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Indexek a kiírt táblákhoz
+--
+
+--
+-- A tábla indexei `cegek`
+--
+ALTER TABLE `cegek`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- A tábla indexei `felhasznalok`
+--
+ALTER TABLE `felhasznalok`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `email` (`email`),
+  ADD KEY `ceg_id` (`ceg_id`);
+
+--
+-- A tábla indexei `jarmuvek`
+--
+ALTER TABLE `jarmuvek`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `ceg_id` (`ceg_id`),
+  ADD KEY `device_id` (`device_id`);
+
+--
+-- A tábla indexei `jogositvanyok`
+--
+ALTER TABLE `jogositvanyok`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `sofor_id` (`sofor_id`);
+
+--
+-- A tábla indexei `menetlevelek`
+--
+ALTER TABLE `menetlevelek`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `sofor_id` (`sofor_id`),
+  ADD KEY `jarmu_id` (`jarmu_id`),
+  ADD KEY `device_id` (`device_id`),
+  ADD KEY `start_azon_id` (`start_azon_id`),
+  ADD KEY `end_azon_id` (`end_azon_id`);
+
+--
+-- A tábla indexei `rfid_azonositasok`
+--
+ALTER TABLE `rfid_azonositasok`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `device_id` (`device_id`),
+  ADD KEY `kartya_id` (`kartya_id`),
+  ADD KEY `sofor_id` (`sofor_id`);
+
+--
+-- A tábla indexei `rfid_kartyak`
+--
+ALTER TABLE `rfid_kartyak`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `uid_hex` (`uid_hex`);
+
+--
+-- A tábla indexei `rfid_kartya_hozzarendeles`
+--
+ALTER TABLE `rfid_kartya_hozzarendeles`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `kartya_id` (`kartya_id`),
+  ADD KEY `sofor_id` (`sofor_id`);
+
+--
+-- A tábla indexei `soforok`
+--
+ALTER TABLE `soforok`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `ceg_id` (`ceg_id`);
+
+--
+-- A tábla indexei `trackereszkozok`
+--
+ALTER TABLE `trackereszkozok`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `imei` (`imei`);
+
+--
+-- A tábla indexei `tracker_poziciok`
+--
+ALTER TABLE `tracker_poziciok`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `device_id` (`device_id`),
+  ADD KEY `menetlevel_id` (`menetlevel_id`);
+
+--
+-- A tábla indexei `utdij_kalkulaciok`
+--
+ALTER TABLE `utdij_kalkulaciok`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `menetlevel_id` (`menetlevel_id`),
+  ADD KEY `jarmu_id` (`jarmu_id`),
+  ADD KEY `ut_id` (`ut_id`);
+
+--
+-- A tábla indexei `utvonalak`
+--
+ALTER TABLE `utvonalak`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- A kiírt táblák AUTO_INCREMENT értéke
+--
+
+--
+-- AUTO_INCREMENT a táblához `cegek`
+--
+ALTER TABLE `cegek`
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT a táblához `felhasznalok`
+--
+ALTER TABLE `felhasznalok`
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT a táblához `jarmuvek`
+--
+ALTER TABLE `jarmuvek`
+  MODIFY `id` int NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT a táblához `jogositvanyok`
+--
+ALTER TABLE `jogositvanyok`
+  MODIFY `id` int NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT a táblához `menetlevelek`
+--
+ALTER TABLE `menetlevelek`
+  MODIFY `id` int NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT a táblához `rfid_azonositasok`
+--
+ALTER TABLE `rfid_azonositasok`
+  MODIFY `id` int NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT a táblához `rfid_kartyak`
+--
+ALTER TABLE `rfid_kartyak`
+  MODIFY `id` int NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT a táblához `rfid_kartya_hozzarendeles`
+--
+ALTER TABLE `rfid_kartya_hozzarendeles`
+  MODIFY `id` int NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT a táblához `soforok`
+--
+ALTER TABLE `soforok`
+  MODIFY `id` int NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT a táblához `trackereszkozok`
+--
+ALTER TABLE `trackereszkozok`
+  MODIFY `id` int NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT a táblához `tracker_poziciok`
+--
+ALTER TABLE `tracker_poziciok`
+  MODIFY `id` int NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT a táblához `utdij_kalkulaciok`
+--
+ALTER TABLE `utdij_kalkulaciok`
+  MODIFY `id` int NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT a táblához `utvonalak`
+--
+ALTER TABLE `utvonalak`
+  MODIFY `id` int NOT NULL AUTO_INCREMENT;
+
+--
+-- Megkötések a kiírt táblákhoz
+--
+
+--
+-- Megkötések a táblához `felhasznalok`
+--
+ALTER TABLE `felhasznalok`
+  ADD CONSTRAINT `felhasznalok_ibfk_1` FOREIGN KEY (`ceg_id`) REFERENCES `cegek` (`id`);
+
+--
+-- Megkötések a táblához `jarmuvek`
+--
+ALTER TABLE `jarmuvek`
+  ADD CONSTRAINT `jarmuvek_ibfk_1` FOREIGN KEY (`ceg_id`) REFERENCES `cegek` (`id`),
+  ADD CONSTRAINT `jarmuvek_ibfk_2` FOREIGN KEY (`device_id`) REFERENCES `trackereszkozok` (`id`);
+
+--
+-- Megkötések a táblához `jogositvanyok`
+--
+ALTER TABLE `jogositvanyok`
+  ADD CONSTRAINT `jogositvanyok_ibfk_1` FOREIGN KEY (`sofor_id`) REFERENCES `soforok` (`id`);
+
+--
+-- Megkötések a táblához `menetlevelek`
+--
+ALTER TABLE `menetlevelek`
+  ADD CONSTRAINT `menetlevelek_ibfk_1` FOREIGN KEY (`sofor_id`) REFERENCES `soforok` (`id`),
+  ADD CONSTRAINT `menetlevelek_ibfk_2` FOREIGN KEY (`jarmu_id`) REFERENCES `jarmuvek` (`id`),
+  ADD CONSTRAINT `menetlevelek_ibfk_3` FOREIGN KEY (`device_id`) REFERENCES `trackereszkozok` (`id`),
+  ADD CONSTRAINT `menetlevelek_ibfk_4` FOREIGN KEY (`start_azon_id`) REFERENCES `rfid_azonositasok` (`id`),
+  ADD CONSTRAINT `menetlevelek_ibfk_5` FOREIGN KEY (`end_azon_id`) REFERENCES `rfid_azonositasok` (`id`);
+
+--
+-- Megkötések a táblához `rfid_azonositasok`
+--
+ALTER TABLE `rfid_azonositasok`
+  ADD CONSTRAINT `rfid_azonositasok_ibfk_1` FOREIGN KEY (`device_id`) REFERENCES `trackereszkozok` (`id`),
+  ADD CONSTRAINT `rfid_azonositasok_ibfk_2` FOREIGN KEY (`kartya_id`) REFERENCES `rfid_kartyak` (`id`),
+  ADD CONSTRAINT `rfid_azonositasok_ibfk_3` FOREIGN KEY (`sofor_id`) REFERENCES `soforok` (`id`);
+
+--
+-- Megkötések a táblához `rfid_kartya_hozzarendeles`
+--
+ALTER TABLE `rfid_kartya_hozzarendeles`
+  ADD CONSTRAINT `rfid_kartya_hozzarendeles_ibfk_1` FOREIGN KEY (`kartya_id`) REFERENCES `rfid_kartyak` (`id`),
+  ADD CONSTRAINT `rfid_kartya_hozzarendeles_ibfk_2` FOREIGN KEY (`sofor_id`) REFERENCES `soforok` (`id`);
+
+--
+-- Megkötések a táblához `soforok`
+--
+ALTER TABLE `soforok`
+  ADD CONSTRAINT `soforok_ibfk_1` FOREIGN KEY (`ceg_id`) REFERENCES `cegek` (`id`);
+
+--
+-- Megkötések a táblához `tracker_poziciok`
+--
+ALTER TABLE `tracker_poziciok`
+  ADD CONSTRAINT `tracker_poziciok_ibfk_1` FOREIGN KEY (`device_id`) REFERENCES `trackereszkozok` (`id`),
+  ADD CONSTRAINT `tracker_poziciok_ibfk_2` FOREIGN KEY (`menetlevel_id`) REFERENCES `menetlevelek` (`id`);
+
+--
+-- Megkötések a táblához `utdij_kalkulaciok`
+--
+ALTER TABLE `utdij_kalkulaciok`
+  ADD CONSTRAINT `utdij_kalkulaciok_ibfk_1` FOREIGN KEY (`menetlevel_id`) REFERENCES `menetlevelek` (`id`),
+  ADD CONSTRAINT `utdij_kalkulaciok_ibfk_2` FOREIGN KEY (`jarmu_id`) REFERENCES `jarmuvek` (`id`),
+  ADD CONSTRAINT `utdij_kalkulaciok_ibfk_3` FOREIGN KEY (`ut_id`) REFERENCES `utvonalak` (`id`);
+COMMIT;
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

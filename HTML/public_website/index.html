@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="hu" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ÚtdíjPro - Forradalmi Útdíjkezelés és Flottaoptimalizálás</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <style>
+        :root {
+            /* Alapértelmezett Színséma (Ezt fogjuk cserélgetni) */
+            --color-primary: #0ea5e9; /* sky-500 */
+            --color-primary-hover: #0284c7; /* sky-600 */
+            --color-secondary: #6366f1; /* indigo-500 */
+            --color-accent: #f59e0b; /* amber-500 */
+            --color-background: #030712; /* gray-950 - Nagyon sötét */
+            --color-surface: #0f172a; /* slate-900 - Felületekhez */
+            --color-surface-light: #1e293b; /* slate-800 */
+            --color-text-base: #e2e8f0; /* slate-200 */
+            --color-text-muted: #94a3b8; /* slate-400 */
+            --color-border: rgba(56, 189, 248, 0.2); 
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--color-background);
+            color: var(--color-text-base);
+            overflow-x: hidden;
+        }
+        .font-poppins { font-family: 'Poppins', sans-serif; }
+
+        .hero-bg {
+            background: linear-gradient(rgba(3, 7, 18, 0.9), rgba(3, 7, 18, 0.9)), url('https://placehold.co/2000x1200/030712/0ea5e9?text=Modern+Logisztikai+Megoldások'); /* Placeholder kép */
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+
+        .glass-card {
+            background: rgba(15, 23, 42, 0.6); 
+            backdrop-filter: blur(16px) saturate(180%);
+            -webkit-backdrop-filter: blur(16px) saturate(180%);
+            border: 1px solid var(--color-border);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+        }
+
+        .btn-primary {
+            background: linear-gradient(90deg, var(--color-primary), var(--color-secondary));
+            color: white;
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+        .btn-primary:hover {
+            transform: translateY(-3px) scale(1.03);
+            box-shadow: 0 10px 20px rgba(var(--color-primary), 0.4); 
+        }
+
+        .btn-secondary {
+            background-color: transparent;
+            border: 2px solid var(--color-primary);
+            color: var(--color-primary);
+            transition: all 0.3s ease;
+        }
+        .btn-secondary:hover {
+            background-color: var(--color-primary);
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        .section-title-highlight { color: var(--color-primary); }
+        .text-muted { color: var(--color-text-muted); }
+        .surface-bg { background-color: var(--color-surface); }
+        .surface-light-bg { background-color: var(--color-surface-light); }
+
+        .nav-link {
+            position: relative;
+            transition: color 0.3s ease;
+            color: var(--color-text-muted);
+        }
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: var(--color-primary);
+            transition: width 0.3s ease-in-out;
+        }
+        .nav-link:hover::after, .nav-link.active::after { width: 70%; }
+        .nav-link:hover, .nav-link.active { color: white; }
+
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275), transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        .animate-on-scroll.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .delay-100 { transition-delay: 0.1s !important; }
+        .delay-200 { transition-delay: 0.2s !important; }
+        .delay-300 { transition-delay: 0.3s !important; }
+        .delay-400 { transition-delay: 0.4s !important; }
+        .delay-500 { transition-delay: 0.5s !important; }
+
+        .custom-shape-divider-bottom svg { fill: var(--color-surface); }
+        .custom-shape-divider-top svg { fill: var(--color-background); }
+
+        .custom-shape-divider-bottom { position: absolute; bottom: -1px; left: 0; width: 100%; overflow: hidden; line-height: 0; transform: rotate(180deg); }
+        .custom-shape-divider-bottom svg { position: relative; display: block; width: calc(130% + 1.3px); height: 120px; }
+        .custom-shape-divider-top { position: absolute; top: -1px; left: 0; width: 100%; overflow: hidden; line-height: 0; }
+        .custom-shape-divider-top svg { position: relative; display: block; width: calc(130% + 1.3px); height: 120px;}
+        .custom-shape-divider-top .shape-fill-gray { fill: var(--color-surface-light); }
+    </style>
+</head>
+<body class="antialiased">
+
+    <nav class="bg-transparent fixed w-full z-50 top-0 start-0 transition-all duration-300" id="mainNav">
+        <div class="max-w-screen-2xl flex flex-wrap items-center justify-between mx-auto p-5">
+            <a href="#home" class="flex items-center space-x-3">
+                <i class="fas fa-road-bridge fa-2x text-[var(--color-primary)]"></i>
+                <span class="font-poppins self-center text-3xl font-bold whitespace-nowrap text-white">Útdíj<span class="text-[var(--color-primary)]">Pro</span></span>
+            </a>
+            <div class="flex md:order-2 space-x-3">
+                <a href="../partner_portal/partner_login.html" class="btn-secondary font-medium rounded-lg text-sm px-6 py-2.5 text-center hidden sm:inline-block">Partner Portál</a>
+                <a href="#pricing" class="btn-primary font-medium rounded-lg text-sm px-6 py-2.5 text-center">Ajánlatkérés</a>
+                <button data-collapse-toggle="navbar-menu" type="button" class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-400 rounded-lg md:hidden hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-600" aria-controls="navbar-menu" aria-expanded="false">
+                    <span class="sr-only">Menü</span><i class="fas fa-bars fa-lg"></i>
+                </button>
+            </div>
+            <div class="items-center justify-between hidden w-full md:flex md:w-auto md:order-1" id="navbar-menu">
+                <ul class="flex flex-col p-4 md:p-0 mt-4 font-medium rounded-lg md:space-x-10 md:flex-row md:mt-0 md:border-0">
+                    <li><a href="#home" class="nav-link active block py-2 md:py-0">Kezdőoldal</a></li>
+                    <li><a href="#about" class="nav-link block py-2 md:py-0">Rólunk</a></li>
+                    <li><a href="#services" class="nav-link block py-2 md:py-0">Szolgáltatások</a></li>
+                    <li><a href="#why-us" class="nav-link block py-2 md:py-0">Miért Minket?</a></li>
+                    <li><a href="#pricing" class="nav-link block py-2 md:py-0">Áraink</a></li>
+                    <li><a href="#contact" class="nav-link block py-2 md:py-0">Kapcsolat</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <section id="home" class="hero-bg min-h-screen flex items-center justify-center pt-24 pb-16 relative">
+        <div class="container mx-auto px-6 text-center">
+            <h1 class="font-poppins text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-black text-white mb-8 leading-tight animate-on-scroll">
+                Az Útdíjfizetés <span class="text-transparent bg-clip-text bg-gradient-to-r from-[var(--color-primary)] to-[var(--color-secondary)]">Jövője</span>. Már Ma.
+            </h1>
+            <p class="text-xl md:text-2xl text-gray-300 mb-12 max-w-3xl mx-auto animate-on-scroll delay-100">
+                Intelligens útdíj-kalkuláció, valós idejű költségoptimalizálás és átfogó flottamenedzsment eszközök egyetlen, csúcstechnológiás platformon. Forradalmasítsa logisztikáját az ÚtdíjPro segítségével!
+            </p>
+            <div class="animate-on-scroll delay-200">
+                <a href="#services" class="btn-primary text-white font-semibold rounded-xl text-lg px-12 py-5 mr-0 sm:mr-4 mb-4 sm:mb-0 inline-block">Fedezze fel Megoldásainkat</a>
+                <a href="../partner_portal/partner_login.html" class="btn-secondary font-semibold rounded-xl text-lg px-12 py-5 inline-block">Partner Bejelentkezés</a>
+            </div>
+        </div>
+        <div class="custom-shape-divider-bottom absolute bottom-0 left-0 w-full overflow-hidden leading-none transform rotate-180">
+            <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
+                <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31.74,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z" class="shape-fill"></path>
+            </svg>
+        </div>
+    </section>
+
+    <section id="about" class="py-20 md:py-32 surface-bg">
+        <div class="container mx-auto px-6">
+            <div class="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+                <div class="animate-on-scroll">
+                    <img src="https://placehold.co/700x500/0f172a/6366f1?text=Innovatív+Csapatunk+a+Háttérben" alt="Rólunk - ÚtdíjPro Csapat" class="rounded-2xl shadow-2xl object-cover w-full h-full">
+                </div>
+                <div class="animate-on-scroll delay-100">
+                    <span class="font-poppins section-subtitle text-sm tracking-widest">Rólunk</span>
+                    <h2 class="font-poppins text-4xl md:text-5xl font-bold text-white section-title-main mt-3 mb-6">Élvonalbeli Technológia a Logisztikai Szektor Szolgálatában</h2>
+                    <p class="text-lg text-muted mb-6">
+                        Az ÚtdíjPro-nál szenvedélyünk a technológia és a logisztika hatékony összekapcsolása. Célunk, hogy partnereink számára a legfejlettebb eszközöket biztosítsuk az útdíjfizetés és a fuvarszervezés optimalizálásához. Többéves iparági tapasztalattal és a folyamatos innováció iránti elkötelezettséggel segítjük vállalkozását a növekedés útján.
+                    </p>
+                    <p class="text-lg text-muted mb-8">
+                        Elkötelezettek vagyunk amellett, hogy átlátható, megbízható és költséghatékony megoldásokat kínáljunk, amelyekkel Ön a lényegre összpontosíthat: vállalkozása sikeres és eredményes működtetésére.
+                    </p>
+                    <a href="#contact" class="btn-primary text-white font-medium rounded-lg px-8 py-3 text-base">Vegye fel velünk a kapcsolatot</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="services" class="py-20 md:py-32 surface-light-bg relative">
+        <div class="custom-shape-divider-top absolute top-0 left-0 w-full overflow-hidden leading-none">
+            <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
+                <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31.74,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z" class="shape-fill-gray"></path>
+            </svg>
+        </div>
+        <div class="container mx-auto px-6 pt-12">
+            <div class="text-center mb-16 md:mb-20 animate-on-scroll">
+                <span class="font-poppins section-subtitle text-sm tracking-widest">Szolgáltatásaink</span>
+                <h2 class="font-poppins text-4xl md:text-5xl font-bold text-white section-title-main mt-3">Átfogó Megoldások Vállalkozása Hatékonyságáért</h2>
+                <p class="text-lg text-muted mt-4 max-w-2xl mx-auto">Minden eszköz egy helyen, amire vállalkozásának szüksége lehet a hatékony és költségtudatos európai fuvarozáshoz.</p>
+            </div>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-10" id="services-grid">
+                {/* A szolgáltatás kártyák ide kerülnek JavaScripttel */}
+            </div>
+        </div>
+    </section>
+
+    <section id="why-us" class="py-20 md:py-32 surface-bg">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16 md:mb-20 animate-on-scroll">
+                <span class="font-poppins section-subtitle text-sm tracking-widest">Miért Mi?</span>
+                <h2 class="font-poppins text-4xl md:text-5xl font-bold text-white section-title-main mt-3">Az ÚtdíjPro Előnyei Vállalkozása Számára</h2>
+            </div>
+            <div class="grid md:grid-cols-2 gap-10 lg:gap-16 items-center">
+                <div class="animate-on-scroll">
+                    <img src="https://placehold.co/600x700/0f172a/2563eb?text=Elégedett+Partnerünk+Grafikonokkal" alt="Miért ÚtdíjPro" class="rounded-2xl shadow-2xl object-cover">
+                </div>
+                <div class="space-y-8 animate-on-scroll delay-100" id="benefits-list">
+                     {/* Az előnyök listája ide kerül JavaScripttel */}
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="pricing" class="py-20 md:py-32 surface-light-bg relative">
+        <div class="custom-shape-divider-top absolute top-0 left-0 w-full overflow-hidden leading-none">
+             <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
+                <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31.74,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z" class="shape-fill"></path>
+            </svg>
+        </div>
+        <div class="container mx-auto px-6 text-center pt-12">
+            <span class="font-poppins section-subtitle text-sm tracking-widest animate-on-scroll">Árazás</span>
+            <h2 class="font-poppins text-4xl md:text-5xl font-bold text-white section-title-main mt-3 mb-8 animate-on-scroll delay-100">Átlátható és Versenyképes Díjcsomag</h2>
+            <p class="text-lg text-muted max-w-3xl mx-auto mb-16 animate-on-scroll delay-200">Egyetlen, mindenre kiterjedő csomagunkkal hozzáférhet minden prémium funkcióhoz, rejtett költségek és bonyolult díjstruktúrák nélkül.</p>
+            <div class="max-w-xl mx-auto glass-card border-2 border-[var(--color-primary)] rounded-3xl shadow-2xl p-8 md:p-12 transform hover:scale-105 transition-transform duration-300 ease-out animate-on-scroll delay-300">
+                <div class="mb-8 text-center">
+                    <i class="fas fa-gem text-6xl text-[var(--color-primary)]"></i>
+                </div>
+                <h3 class="font-poppins text-3xl font-bold text-white mb-4">Prémium Hozzáférés</h3>
+                <p class="font-poppins text-6xl font-extrabold text-white mb-2">1.000.000 <span class="text-4xl text-[var(--color-primary)]">Ft</span></p>
+                <p class="text-muted mb-8 text-lg">/ év + ÁFA</p>
+                <ul class="text-gray-300 space-y-4 mb-10 text-left text-lg" id="pricing-features-list">
+                    {/* Az árképzési jellemzők listája ide kerül JavaScripttel */}
+                </ul>
+                <button class="w-full btn-primary text-white font-bold py-4 px-8 rounded-xl text-xl">Előfizetés és Regisztráció Indítása</button>
+                <p class="text-xs text-gray-500 mt-6">Fizetési lehetőségek: Bankkártya (Stripe), Átutalás. Apple Pay integráció fejlesztés alatt. További részletekért és egyedi ajánlatokért vegye fel velünk a kapcsolatot.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="partners" class="py-20 md:py-32 surface-bg">
+         <div class="container mx-auto px-6">
+            <div class="glass-card rounded-2xl p-10 md:p-16 grid lg:grid-cols-2 gap-10 items-center animate-on-scroll">
+                <div>
+                    <span class="font-poppins section-subtitle text-sm tracking-widest">Exkluzív Hozzáférés</span>
+                    <h2 class="font-poppins text-3xl md:text-4xl font-bold text-white section-title-main mt-3 mb-6">Lépjen Be Partner Portálunkra!</h2>
+                    <p class="text-lg text-muted mb-8">
+                        Előfizetőink számára létrehozott dedikált felületünkön minden eszközt megtalál a hatékony munkavégzéshez. Kezelje kalkulációit, flottáját, férjen hozzá exkluzív riportokhoz és optimalizálja költségeit egyszerűen.
+                    </p>
+                    <a href="../partner_portal/partner_login.html" class="btn-primary text-white font-semibold rounded-lg text-lg px-10 py-4">Bejelentkezés a Portálra</a>
+                </div>
+                <div class="hidden lg:block animate-on-scroll delay-100">
+                    <img src="https://placehold.co/600x450/0f172a/0ea5e9?text=Partner+Portál+Dashboard+Előnézet" alt="Partner Portál Előnézet" class="rounded-xl shadow-xl">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="py-20 md:py-32 surface-light-bg relative">
+        <div class="custom-shape-divider-top absolute top-0 left-0 w-full overflow-hidden leading-none">
+             <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
+                <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31.74,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z" class="shape-fill"></path>
+            </svg>
+        </div>
+        <div class="container mx-auto px-6 text-center pt-12">
+             <span class="font-poppins section-subtitle text-sm tracking-widest animate-on-scroll">Elérhetőség</span>
+            <h2 class="font-poppins text-4xl md:text-5xl font-bold text-white section-title-main mt-3 mb-8 animate-on-scroll delay-100">Készen Állunk a Közös Munkára!</h2>
+            <p class="text-lg text-muted max-w-xl mx-auto mb-12 animate-on-scroll delay-200">Ha kérdése van szolgáltatásainkkal, díjcsomagunkkal kapcsolatban, vagy egyedi igényei merülnének fel, szakértő csapatunk készséggel áll rendelkezésére, hogy megtaláljuk a legjobb megoldást vállalkozása számára.</p>
+            <div class="animate-on-scroll delay-300">
+                <a href="mailto:info@utdijpro.example.com" class="btn-primary text-white font-semibold rounded-xl text-lg px-12 py-5 inline-flex items-center">
+                    <i class="fas fa-envelope mr-3"></i>
+                    Vegye fel velünk a kapcsolatot
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-[var(--color-background)] text-center py-12 border-t border-[var(--color-border)]">
+        <div class="mb-6">
+            <a href="#" class="text-gray-500 hover:text-[var(--color-primary)] px-4 text-2xl transition-colors" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" class="text-gray-500 hover:text-[var(--color-primary)] px-4 text-2xl transition-colors" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+            <a href="#" class="text-gray-500 hover:text-[var(--color-primary)] px-4 text-2xl transition-colors" aria-label="Céginformáció"><i class="fas fa-briefcase"></i></a>
+        </div>
+        <p class="text-muted text-sm">&copy; <span id="currentYearFooter"></span> ÚtdíjPro Solutions Kft. (Placeholder Név). Minden jog fenntartva.</p>
+        <p class="text-xs text-gray-600 mt-2">
+            <a href="#" class="hover:text-[var(--color-primary)]">Adatvédelmi Nyilatkozat</a> | 
+            <a href="#" class="hover:text-[var(--color-primary)]">Felhasználási Feltételek</a> |
+            <a href="#" class="hover:text-[var(--color-primary)]">Süti Tájékoztató</a>
+        </p>
+    </footer>
+
+    <script>
+        // Dinamikus tartalom generálása a JavaScript tömbökből
+        const servicesData = [
+            { icon: 'fa-calculator', title: 'Valós Idejű Útdíj Kalkulátor', desc: 'Azonnali, pontos díjszámítás Európa-szerte, járműspecifikus adatokkal. Tervezze meg a legoptimálisabb és legköltséghatékonyabb útvonalakat másodpercek alatt.', delay: 0 },
+            { icon: 'fa-route', title: 'Intelligens Útvonal Optimalizálás', desc: 'Teherautó-specifikus korlátozások, aktuális forgalmi adatok és költségtényezők figyelembevételével a leghatékonyabb fuvarokért.', delay: 100 },
+            { icon: 'fa-file-excel', title: 'Excel Adatkezelés és Riportok', desc: 'Tömeges adatfeltöltés útvonalakhoz, egyedi riportok generálása és adatexport a gördülékeny adminisztrációért. (Hamarosan elérhető)', delay: 200 },
+            { icon: 'fa-file-invoice-dollar', title: 'Automatizált Számlázási Integráció', desc: 'Közvetlen kapcsolat népszerű online számlázó rendszerekkel a hibamentes, gyors és automatizált számlázási folyamatokért. (Hamarosan elérhető)', delay: 300 },
+            { icon: 'fa-shield-alt', title: 'Biztonságos Partner Portál', desc: 'Dedikált online felület előfizetőink számára a kalkulációkhoz, flottakezeléshez, riportokhoz és személyes beállításokhoz.', delay: 400 },
+            { icon: 'fa-headset', title: 'Prémium Ügyféltámogatás', desc: 'Szakértő csapatunk gyors és hatékony segítséget nyújt minden felmerülő kérdésben, hogy Ön zökkenőmentesen használhassa platformunkat.', delay: 500 }
+        ];
+
+        const benefitsData = [
+            { icon: 'fa-coins', title: 'Jelentős Költségmegtakarítás', desc: 'Intelligens algoritmusaink és naprakész adatbázisunk segítségével minimalizálhatja útdíj- és üzemanyagköltségeit, növelve ezzel profitabilitását.' },
+            { icon: 'fa-clock-rotate-left', title: 'Időhatékonyság és Automatizáció', desc: 'Gyors kalkulációk, automatizált riportok és tervezett integrációink révén értékes munkaórákat takaríthat meg vállalkozásának.' },
+            { icon: 'fa-lightbulb-on', title: 'Innovatív és Felhasználóbarát Platform', desc: 'Folyamatosan fejlesztett, intuitív és könnyen kezelhető felület, amely a legmodernebb technológiákat alkalmazza az Ön kényelméért.' },
+            { icon: 'fa-shield-check', title: 'Adatbiztonság és Megbízható Működés', desc: 'Legmagasabb szintű adatvédelem és stabil, megbízható rendszer a kritikus üzleti folyamatok zökkenőmentes biztosításához.' }
+        ];
+
+        const pricingFeaturesData = [
+            "Korlátlan útdíj kalkuláció és útvonaltervezés",
+            "Teljes Európa lefedettség, folyamatosan frissülő adatokkal",
+            "Részletes járműspecifikus beállítások (tengelyszám, súly, emisszió)",
+            "Költségelemzések és letölthető, személyre szabható riportok",
+            "Dedikált Partner Portál hozzáférés egyedi funkciókkal",
+            "Excel import/export funkciók tömeges műveletekhez (Hamarosan)",
+            "Online számlázó rendszerekkel való zökkenőmentes integráció (Hamarosan)",
+            "Kiemelt, gyorsított ügyfélszolgálat és szakmai tanácsadás"
+        ];
+
+        function renderServices() {
+            const container = document.getElementById('services-grid');
+            if (!container) return;
+            container.innerHTML = servicesData.map((service) => `
+                <div class="glass-card p-8 rounded-2xl transform hover:-translate-y-2 transition-all duration-300 ease-out animate-on-scroll delay-${service.delay}">
+                    <div class="text-[var(--color-primary)] mb-6 text-4xl">
+                        <i class="fas ${service.icon}"></i>
+                    </div>
+                    <h3 class="font-poppins text-2xl font-semibold text-white mb-4">${service.title}</h3>
+                    <p class="text-muted text-base">${service.desc}</p>
+                </div>
+            `).join('');
+        }
+
+        function renderBenefits() {
+            const container = document.getElementById('benefits-list');
+            if (!container) return;
+            container.innerHTML = benefitsData.map(benefit => `
+                <div class="flex items-start space-x-4 mb-6"> {/* Added mb-6 for spacing between benefit items */}
+                    <div class="flex-shrink-0 w-12 h-12 rounded-full bg-[var(--color-primary)] bg-opacity-20 text-[var(--color-primary)] flex items-center justify-center">
+                        <i class="fas ${benefit.icon} fa-lg"></i>
+                    </div>
+                    <div>
+                        <h3 class="font-poppins text-xl font-semibold text-white mb-1">${benefit.title}</h3>
+                        <p class="text-muted">${benefit.desc}</p>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function renderPricingFeatures() {
+            const container = document.getElementById('pricing-features-list');
+            if (!container) return;
+            container.innerHTML = pricingFeaturesData.map(item => `
+                <li class="flex items-center">
+                    <i class="fas ${item.includes('(Hamarosan)') ? 'fa-hourglass-half text-amber-400' : 'fa-check-circle text-green-400'} mr-3"></i>${item}
+                </li>
+            `).join('');
+        }
+        
+        document.addEventListener('DOMContentLoaded', () => {
+            renderServices();
+            renderBenefits();
+            renderPricingFeatures();
+
+            document.getElementById('currentYearFooter').textContent = new Date().getFullYear();
+
+            const mainNav = document.getElementById('mainNav');
+            if (mainNav) {
+                window.addEventListener('scroll', () => {
+                    if (window.scrollY > 50) {
+                        mainNav.classList.remove('bg-transparent');
+                        mainNav.classList.add('bg-[var(--color-surface)]', 'bg-opacity-95', 'backdrop-blur-md', 'shadow-xl');
+                    } else {
+                        mainNav.classList.add('bg-transparent');
+                        mainNav.classList.remove('bg-[var(--color-surface)]', 'bg-opacity-95', 'backdrop-blur-md', 'shadow-xl');
+                    }
+                });
+            }
+            
+            const menuButton = document.querySelector('[data-collapse-toggle="navbar-menu"]');
+            const navbarMenu = document.getElementById('navbar-menu');
+            if (menuButton && navbarMenu) {
+                menuButton.addEventListener('click', () => {
+                    const isHidden = navbarMenu.classList.contains('hidden');
+                    navbarMenu.classList.toggle('hidden');
+                    menuButton.setAttribute('aria-expanded', String(!isHidden));
+                });
+            }
+            
+            const animatedElements = document.querySelectorAll('.animate-on-scroll');
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('is-visible');
+                    }
+                });
+            }, { threshold: 0.1 });
+            animatedElements.forEach(el => observer.observe(el));
+
+            const navLinks = document.querySelectorAll('nav a[href^="#"], nav a[href^="../partner_portal/"]'); // Hozzáadva a külső linkek figyelmen kívül hagyása
+            const sections = document.querySelectorAll('section[id]');
+            let currentSectionId = 'home';
+
+            function updateActiveNavLink() {
+                const navHeight = mainNav.offsetHeight;
+                let foundSection = false;
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop - navHeight - 80; 
+                    if (pageYOffset >= sectionTop) {
+                        currentSectionId = section.getAttribute('id');
+                        foundSection = true;
+                    }
+                });
+                 if (!foundSection && window.pageYOffset < (sections.length > 0 ? sections[0].offsetTop - navHeight - 80 : 0 )) {
+                    currentSectionId = 'home';
+                }
+
+                navLinks.forEach(link => {
+                    if(link.getAttribute('href').startsWith('#')) { // Csak az oldalon belüli linkeknél
+                        link.classList.remove('active');
+                        if (link.getAttribute('href') === '#' + currentSectionId) {
+                            link.classList.add('active');
+                        }
+                    }
+                });
+            }
+            
+            navLinks.forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    const href = this.getAttribute('href');
+                    if (href.startsWith('#')) {
+                        e.preventDefault();
+                        const targetElement = document.querySelector(href);
+                        if (targetElement) {
+                            const navHeight = mainNav.offsetHeight;
+                            const elementPosition = targetElement.getBoundingClientRect().top;
+                            const offsetPosition = elementPosition + window.pageYOffset - navHeight - 20;
+
+                            window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
+                            if (!navbarMenu.classList.contains('hidden') && window.innerWidth < 768) {
+                                navbarMenu.classList.add('hidden');
+                                menuButton.setAttribute('aria-expanded', 'false');
+                            }
+                        }
+                    }
+                    // Ha nem '#' link (pl. "partner_login.html"), akkor az alapértelmezett navigáció történik
+                });
+            });
+            
+            window.addEventListener('scroll', updateActiveNavLink);
+            window.addEventListener('load', updateActiveNavLink);
+        });
+    </script>
+</body>
+</html>
