@@ -27,26 +27,51 @@ namespace TollÚtdíj
 
         private void btnlogin_Click_1(object sender, EventArgs e)
         {
-            MySqlConnectionStringBuilder build = new MySqlConnectionStringBuilder { Server = "localhost", UserID = "root", Password = "uj_jelszo", Database = "tollutdijadatbazis" };
-            MySqlConnection kapcsolat = new MySqlConnection(build.ConnectionString);
-            kapcsolat.Open();
-            string username = txbusername.Text;
-            var parancs = kapcsolat.CreateCommand();
-            parancs.CommandText = $"SELECT jelszo_hash FROM felhasznalok WHERE email = '{username}';";
-            var read = parancs.ExecuteReader();
-            while (read.Read())
+            MySqlConnectionStringBuilder build = new MySqlConnectionStringBuilder
             {
-                if (txbpass.Text == read.GetString(0))
+                Server = "localhost",
+                UserID = "root",
+                Password = "mysql",
+                Database = "tollutdijadatbazis"
+            };
+
+            using (MySqlConnection kapcsolat = new MySqlConnection(build.ConnectionString))
+            {
+                kapcsolat.Open();
+
+                string username = txbusername.Text;
+                string password = txbpass.Text;
+
+                var parancs = kapcsolat.CreateCommand();
+                parancs.CommandText = "SELECT jelszo_hash FROM felhasznalok WHERE email = @email";
+                parancs.Parameters.AddWithValue("@email", username);
+
+                var read = parancs.ExecuteReader();
+
+                if (!read.HasRows)
                 {
-                    userinterface userinterface = new userinterface();
-                    userinterface.ShowDialog();
+                    
+                    MessageBox.Show("Hibás E-mail cím vagy jelszó!");
+                    return;
+                }
+
+                read.Read();
+                string dbPassword = read.GetString(0);
+
+                if (password == dbPassword)
+                {
+                    userinterface ui = new userinterface();
+                    ui.ShowDialog();
                     this.Close();
                 }
-                else MessageBox.Show("nem ok");
-
+                else
+                {
+                    MessageBox.Show("Hibás E-mail cím vagy jelszó!");
+                }
             }
+        }
 
-            kapcsolat.Close();
+       
             /*
             if (txbusername.Text != "" && txbpass.Text == "")
             {
@@ -57,7 +82,7 @@ namespace TollÚtdíj
             }
             else MessageBox.Show("nem ok");
             */
-        }
+        
         private void txbusername_TextChanged(object sender, EventArgs e)
         {
 

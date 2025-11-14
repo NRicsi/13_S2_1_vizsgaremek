@@ -52,7 +52,7 @@
             // lblpass
             // 
             this.lblpass.AutoSize = true;
-            this.lblpass.Location = new System.Drawing.Point(57, 133);
+            this.lblpass.Location = new System.Drawing.Point(57, 136);
             this.lblpass.Name = "lblpass";
             this.lblpass.Size = new System.Drawing.Size(39, 13);
             this.lblpass.TabIndex = 12;
@@ -61,11 +61,11 @@
             // lbluser
             // 
             this.lbluser.AutoSize = true;
-            this.lbluser.Location = new System.Drawing.Point(12, 82);
+            this.lbluser.Location = new System.Drawing.Point(37, 85);
             this.lbluser.Name = "lbluser";
-            this.lbluser.Size = new System.Drawing.Size(84, 13);
+            this.lbluser.Size = new System.Drawing.Size(59, 13);
             this.lbluser.TabIndex = 11;
-            this.lbluser.Text = "Felhasználónév:";
+            this.lbluser.Text = "E-mail cím:";
             // 
             // txbpass
             // 
