@@ -64,3 +64,5 @@ C:\Users\bobanpetrik\Documents\GitHub\13_S2_1_vizsgaremek\Asztali alkalmazás\To
 C:\Users\bobanpetrik\Documents\GitHub\13_S2_1_vizsgaremek\Asztali alkalmazás\TollÚtdíj\obj\Debug\TollÚtdíj.csproj.Up2Date
 C:\Users\bobanpetrik\Documents\GitHub\13_S2_1_vizsgaremek\Asztali alkalmazás\TollÚtdíj\obj\Debug\TollÚtdíj.exe
 C:\Users\bobanpetrik\Documents\GitHub\13_S2_1_vizsgaremek\Asztali alkalmazás\TollÚtdíj\obj\Debug\TollÚtdíj.pdb
+C:\Users\bobanpetrik\Documents\GitHub\13_S2_1_vizsgaremek\Asztali alkalmazás\TollÚtdíj\bin\Debug\BCrypt.Net-Next.dll
+C:\Users\bobanpetrik\Documents\GitHub\13_S2_1_vizsgaremek\Asztali alkalmazás\TollÚtdíj\bin\Debug\BCrypt.Net-Next.xml

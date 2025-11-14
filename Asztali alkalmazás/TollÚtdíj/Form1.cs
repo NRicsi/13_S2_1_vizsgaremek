@@ -9,6 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using BCrypt.Net;
 
 namespace TollÚtdíj
 {
@@ -56,9 +57,10 @@ namespace TollÚtdíj
                 }
 
                 read.Read();
-                string dbPassword = read.GetString(0);
+                string JelszoHash = read.GetString(0);
+                bool validjelszo = BCrypt.Net.BCrypt.Verify(password, JelszoHash);
 
-                if (password == dbPassword)
+                if (validjelszo)
                 {
                     userinterface ui = new userinterface();
                     ui.ShowDialog();
