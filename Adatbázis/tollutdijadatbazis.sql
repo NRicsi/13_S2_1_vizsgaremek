@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Gép: localhost
--- Létrehozás ideje: 2025. Nov 12. 11:52
+-- Létrehozás ideje: 2025. Nov 14. 08:43
 -- Kiszolgáló verziója: 8.0.42
 -- PHP verzió: 8.2.29
 
@@ -26,14 +26,13 @@ SET time_zone = "+00:00";
 --
 -- Tábla szerkezet ehhez a táblához `cegek`
 --
-CREATE DATABASE tollutdijadatbazis;
-USE tollutdijadatbazis;
+
 CREATE TABLE `cegek` (
   `id` int NOT NULL,
-  `nev` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
-  `adoszam` varchar(50) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `cim` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `statusz` varchar(50) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `nev` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `adoszam` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `cim` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `statusz` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -53,9 +52,9 @@ INSERT INTO `cegek` (`id`, `nev`, `adoszam`, `cim`, `statusz`, `created_at`) VAL
 CREATE TABLE `felhasznalok` (
   `id` int NOT NULL,
   `ceg_id` int DEFAULT NULL,
-  `email` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
-  `jelszo_hash` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
-  `teljes_nev` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `email` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `jelszo_hash` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `teljes_nev` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
   `aktiv` tinyint(1) DEFAULT '1',
   `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -65,7 +64,7 @@ CREATE TABLE `felhasznalok` (
 --
 
 INSERT INTO `felhasznalok` (`id`, `ceg_id`, `email`, `jelszo_hash`, `teljes_nev`, `aktiv`, `created_at`) VALUES
-(2, 1, 'placeholder@demo.hu', 'demo_hash', 'Demo Felhasználó', 1, '2025-11-12 11:07:18');
+(2, 1, 'placeholder@demo.hu', '$2a$12$UBhtdkUq1hGTrTg3sw3W0Oi7qQYPUi1zK0hKhhdYLCjq2kMmBOZsK', 'Demo Felhasználó', 1, '2025-11-12 11:07:18');
 
 -- --------------------------------------------------------
 
@@ -76,13 +75,13 @@ INSERT INTO `felhasznalok` (`id`, `ceg_id`, `email`, `jelszo_hash`, `teljes_nev`
 CREATE TABLE `jarmuvek` (
   `id` int NOT NULL,
   `ceg_id` int DEFAULT NULL,
-  `kategoria` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `marka` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `tipus` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `kategoria` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `marka` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `tipus` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
   `tengelyszam` int DEFAULT NULL,
-  `rendszam` varchar(20) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `vin` varchar(50) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `euro_besorolas` varchar(20) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `rendszam` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `vin` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `euro_besorolas` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
   `ossztomeg_kg` int DEFAULT NULL,
   `potkocsi_kepes` tinyint(1) DEFAULT '0',
   `device_id` int DEFAULT NULL,
@@ -98,7 +97,7 @@ CREATE TABLE `jarmuvek` (
 CREATE TABLE `jogositvanyok` (
   `id` int NOT NULL,
   `sofor_id` int DEFAULT NULL,
-  `kategoria` varchar(10) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `kategoria` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
   `erv_tol` date DEFAULT NULL,
   `erv_ig` date DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -118,8 +117,8 @@ CREATE TABLE `menetlevelek` (
   `end_idopont` timestamp NULL DEFAULT NULL,
   `start_azon_id` int DEFAULT NULL,
   `end_azon_id` int DEFAULT NULL,
-  `start_location` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `end_location` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL
+  `start_location` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `end_location` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -134,9 +133,9 @@ CREATE TABLE `rfid_azonositasok` (
   `kartya_id` int DEFAULT NULL,
   `sofor_id` int DEFAULT NULL,
   `eredmeny` tinyint(1) DEFAULT NULL,
-  `hibakod` varchar(50) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `hibakod` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
   `idobelyeg` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
-  `megjegyzes` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL
+  `megjegyzes` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -147,8 +146,8 @@ CREATE TABLE `rfid_azonositasok` (
 
 CREATE TABLE `rfid_kartyak` (
   `id` int NOT NULL,
-  `uid_hex` varchar(100) COLLATE utf8mb4_general_ci NOT NULL,
-  `tipus` varchar(50) COLLATE utf8mb4_general_ci DEFAULT NULL
+  `uid_hex` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `tipus` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -175,12 +174,12 @@ CREATE TABLE `rfid_kartya_hozzarendeles` (
 CREATE TABLE `soforok` (
   `id` int NOT NULL,
   `ceg_id` int DEFAULT NULL,
-  `szemelyi_azonosito` varchar(50) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `nev` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `szemelyi_azonosito` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `nev` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `szuletesi_datum` date DEFAULT NULL,
-  `telefonszam` varchar(50) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `cim` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `adoszam` varchar(50) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `telefonszam` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `cim` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `adoszam` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
   `aktiv` tinyint(1) DEFAULT '1',
   `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -193,10 +192,10 @@ CREATE TABLE `soforok` (
 
 CREATE TABLE `trackereszkozok` (
   `id` int NOT NULL,
-  `imei` varchar(50) COLLATE utf8mb4_general_ci NOT NULL,
-  `sim_iccid` varchar(50) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `modell` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `firmware_verzio` varchar(50) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `imei` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `sim_iccid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `modell` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `firmware_verzio` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
   `aktiv` tinyint(1) DEFAULT '1',
   `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -215,7 +214,7 @@ CREATE TABLE `tracker_poziciok` (
   `lat` float DEFAULT NULL,
   `lon` float DEFAULT NULL,
   `sebesseg_kmh` float DEFAULT NULL,
-  `nyers_payload` text COLLATE utf8mb4_general_ci
+  `nyers_payload` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -229,9 +228,9 @@ CREATE TABLE `utdij_kalkulaciok` (
   `menetlevel_id` int DEFAULT NULL,
   `jarmu_id` int DEFAULT NULL,
   `ut_id` int DEFAULT NULL,
-  `szolgaltato` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `szolgaltato` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
   `osszeg_brutto` decimal(12,2) DEFAULT NULL,
-  `penznem` varchar(10) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `penznem` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
   `kalkulalt_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -243,10 +242,10 @@ CREATE TABLE `utdij_kalkulaciok` (
 
 CREATE TABLE `utvonalak` (
   `id` int NOT NULL,
-  `indulasi_pont` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `erkezesi_pont` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `indulasi_pont` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `erkezesi_pont` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
   `tavolsag_m` int DEFAULT NULL,
-  `tervezet_gpx` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `tervezet_gpx` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
   `letrehozva_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
