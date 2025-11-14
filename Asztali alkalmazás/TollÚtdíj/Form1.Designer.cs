@@ -29,30 +29,23 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Login));
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.lblpass = new System.Windows.Forms.Label();
             this.lbluser = new System.Windows.Forms.Label();
             this.txbpass = new System.Windows.Forms.TextBox();
             this.txbusername = new System.Windows.Forms.TextBox();
             this.lbl1 = new System.Windows.Forms.Label();
             this.btnlogin = new System.Windows.Forms.Button();
+            this.lblhibas = new System.Windows.Forms.Label();
+            this.pbloading = new System.Windows.Forms.PictureBox();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            ((System.ComponentModel.ISupportInitialize)(this.pbloading)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(241, 6);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(292, 245);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
-            this.pictureBox1.TabIndex = 13;
-            this.pictureBox1.TabStop = false;
             // 
             // lblpass
             // 
             this.lblpass.AutoSize = true;
-            this.lblpass.Location = new System.Drawing.Point(57, 136);
+            this.lblpass.Location = new System.Drawing.Point(31, 129);
             this.lblpass.Name = "lblpass";
             this.lblpass.Size = new System.Drawing.Size(39, 13);
             this.lblpass.TabIndex = 12;
@@ -61,7 +54,7 @@
             // lbluser
             // 
             this.lbluser.AutoSize = true;
-            this.lbluser.Location = new System.Drawing.Point(37, 85);
+            this.lbluser.Location = new System.Drawing.Point(11, 78);
             this.lbluser.Name = "lbluser";
             this.lbluser.Size = new System.Drawing.Size(59, 13);
             this.lbluser.TabIndex = 11;
@@ -69,7 +62,9 @@
             // 
             // txbpass
             // 
-            this.txbpass.Location = new System.Drawing.Point(102, 133);
+            this.txbpass.BackColor = System.Drawing.SystemColors.Window;
+            this.txbpass.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txbpass.Location = new System.Drawing.Point(76, 126);
             this.txbpass.MaxLength = 25;
             this.txbpass.Name = "txbpass";
             this.txbpass.PasswordChar = '*';
@@ -78,7 +73,7 @@
             // 
             // txbusername
             // 
-            this.txbusername.Location = new System.Drawing.Point(103, 82);
+            this.txbusername.Location = new System.Drawing.Point(77, 75);
             this.txbusername.MaxLength = 25;
             this.txbusername.Name = "txbusername";
             this.txbusername.Size = new System.Drawing.Size(113, 20);
@@ -88,7 +83,7 @@
             // lbl1
             // 
             this.lbl1.AutoSize = true;
-            this.lbl1.Location = new System.Drawing.Point(99, 45);
+            this.lbl1.Location = new System.Drawing.Point(73, 38);
             this.lbl1.Name = "lbl1";
             this.lbl1.Size = new System.Drawing.Size(117, 13);
             this.lbl1.TabIndex = 8;
@@ -96,7 +91,7 @@
             // 
             // btnlogin
             // 
-            this.btnlogin.Location = new System.Drawing.Point(102, 181);
+            this.btnlogin.Location = new System.Drawing.Point(76, 174);
             this.btnlogin.Name = "btnlogin";
             this.btnlogin.Size = new System.Drawing.Size(114, 23);
             this.btnlogin.TabIndex = 7;
@@ -104,12 +99,45 @@
             this.btnlogin.UseVisualStyleBackColor = true;
             this.btnlogin.Click += new System.EventHandler(this.btnlogin_Click_1);
             // 
+            // lblhibas
+            // 
+            this.lblhibas.AutoSize = true;
+            this.lblhibas.Font = new System.Drawing.Font("Arial Narrow", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.lblhibas.ForeColor = System.Drawing.Color.Red;
+            this.lblhibas.Location = new System.Drawing.Point(31, 200);
+            this.lblhibas.Name = "lblhibas";
+            this.lblhibas.Size = new System.Drawing.Size(237, 32);
+            this.lblhibas.TabIndex = 14;
+            this.lblhibas.Text = "Kérjük, ellenőrizze a jelszavát és az E-mail címét, \r\nmajd próbálja újra.";
+            this.lblhibas.Visible = false;
+            // 
+            // pbloading
+            // 
+            this.pbloading.Image = global::TollÚtdíj.Properties.Resources.Dual_Ring_1x_1_0s_268px_268px;
+            this.pbloading.Location = new System.Drawing.Point(136, 12);
+            this.pbloading.Name = "pbloading";
+            this.pbloading.Size = new System.Drawing.Size(242, 220);
+            this.pbloading.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pbloading.TabIndex = 15;
+            this.pbloading.TabStop = false;
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
+            this.pictureBox1.Location = new System.Drawing.Point(240, 4);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(292, 245);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+            this.pictureBox1.TabIndex = 13;
+            this.pictureBox1.TabStop = false;
+            // 
             // Login
             // 
             this.AcceptButton = this.btnlogin;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(544, 261);
+            this.Controls.Add(this.lblhibas);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.lblpass);
             this.Controls.Add(this.lbluser);
@@ -117,6 +145,7 @@
             this.Controls.Add(this.txbusername);
             this.Controls.Add(this.lbl1);
             this.Controls.Add(this.btnlogin);
+            this.Controls.Add(this.pbloading);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MaximumSize = new System.Drawing.Size(560, 300);
@@ -126,6 +155,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Bejelentkezés";
             this.Load += new System.EventHandler(this.Login_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.pbloading)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -141,6 +171,8 @@
         private System.Windows.Forms.TextBox txbusername;
         private System.Windows.Forms.Label lbl1;
         private System.Windows.Forms.Button btnlogin;
+        private System.Windows.Forms.Label lblhibas;
+        private System.Windows.Forms.PictureBox pbloading;
     }
 }
 
