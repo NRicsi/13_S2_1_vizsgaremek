@@ -1,4 +1,6 @@
-﻿namespace TollÚtdíj
+﻿using System.Net.NetworkInformation;
+
+namespace TollÚtdíj
 {
     partial class Login
     {
@@ -104,16 +106,16 @@
             this.lblhibas.AutoSize = true;
             this.lblhibas.Font = new System.Drawing.Font("Arial Narrow", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.lblhibas.ForeColor = System.Drawing.Color.Red;
-            this.lblhibas.Location = new System.Drawing.Point(31, 200);
+            this.lblhibas.Location = new System.Drawing.Point(36, 200);
             this.lblhibas.Name = "lblhibas";
-            this.lblhibas.Size = new System.Drawing.Size(237, 32);
+            this.lblhibas.Size = new System.Drawing.Size(183, 32);
             this.lblhibas.TabIndex = 14;
-            this.lblhibas.Text = "Kérjük, ellenőrizze a jelszavát és az E-mail címét, \r\nmajd próbálja újra.";
+            this.lblhibas.Text = "Kérjük, ellenőrizze a jelszavát\r\nés az E-mail címét, majd próbálja újra.";
             this.lblhibas.Visible = false;
             // 
             // pbloading
             // 
-            this.pbloading.Image = global::TollÚtdíj.Properties.Resources.Dual_Ring_1x_1_0s_268px_268px;
+            this.pbloading.Image = ((System.Drawing.Image)(resources.GetObject("pbloading.Image")));
             this.pbloading.Location = new System.Drawing.Point(136, 12);
             this.pbloading.Name = "pbloading";
             this.pbloading.Size = new System.Drawing.Size(242, 220);
@@ -124,7 +126,7 @@
             // pictureBox1
             // 
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(240, 4);
+            this.pictureBox1.Location = new System.Drawing.Point(225, 4);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(292, 245);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;

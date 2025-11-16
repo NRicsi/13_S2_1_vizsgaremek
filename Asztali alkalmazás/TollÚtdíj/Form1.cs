@@ -65,6 +65,7 @@ namespace TollÚtdíj
 
             using (MySqlConnection kapcsolat = new MySqlConnection(build.ConnectionString))
             {
+                //try catch-be rakni
                 kapcsolat.Open();
 
                 string felhasznalonev = txbusername.Text;

@@ -63,9 +63,9 @@ namespace TollÚtdíj.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap Dual_Ring_1x_1_0s_268px_268px {
+        internal static System.Drawing.Bitmap Loadingscreen {
             get {
-                object obj = ResourceManager.GetObject("Dual Ring@1x-1.0s-268px-268px", resourceCulture);
+                object obj = ResourceManager.GetObject("Loadingscreen", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -73,9 +73,9 @@ namespace TollÚtdíj.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap loading_screen {
+        internal static System.Drawing.Bitmap Loadingscreen1 {
             get {
-                object obj = ResourceManager.GetObject("loading screen", resourceCulture);
+                object obj = ResourceManager.GetObject("Loadingscreen1", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
