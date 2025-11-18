@@ -65,8 +65,31 @@ namespace TollÚtdíj
 
             using (MySqlConnection kapcsolat = new MySqlConnection(build.ConnectionString))
             {
+
+
                 //try catch-be rakni
-                kapcsolat.Open();
+                try
+                {
+                    kapcsolat.Open();
+                }
+                catch (Exception)
+                {
+
+                    lblhibas.Text = "Adatbetöltési hiba.\r\nEllenőrizze az internetkapcsolatot, majd próbálja újra.";
+                    pbloading.Visible = false;
+                    pictureBox1.Visible = true;
+                    lbluser.Visible = true;
+                    lblpass.Visible = true;
+                    lblhibas.Visible = true;
+                    txbpass.Visible = true;
+                    txbusername.Visible = true;
+                    lbl1.Visible = true;
+                    btnlogin.Visible = true;
+                    txbpass.Text = "";
+                    txbpass.Focus();
+                    return;
+                }
+                
 
                 string felhasznalonev = txbusername.Text;
                 string jelszo = txbpass.Text;
@@ -106,6 +129,7 @@ namespace TollÚtdíj
                 }
                 else
                 {
+                    lblhibas.Text = "Kérjük, ellenőrizze a jelszavát\r\nés az E-mail címét, majd próbálja újra.";
                     lblhibas.Visible = true;
                     pbloading.Visible = false;
                     pictureBox1.Visible = true;
@@ -125,10 +149,7 @@ namespace TollÚtdíj
        
          
         
-        private void txbusername_TextChanged(object sender, EventArgs e)
-        {
-
-        }
+        
 
         
     }

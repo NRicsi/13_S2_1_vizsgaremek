@@ -80,7 +80,7 @@ namespace TollÚtdíj
             this.txbusername.Name = "txbusername";
             this.txbusername.Size = new System.Drawing.Size(113, 20);
             this.txbusername.TabIndex = 9;
-            this.txbusername.TextChanged += new System.EventHandler(this.txbusername_TextChanged);
+            
             // 
             // lbl1
             // 
