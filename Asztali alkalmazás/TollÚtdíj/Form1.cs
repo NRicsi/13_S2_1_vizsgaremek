@@ -16,19 +16,83 @@ namespace TollÚtdíj
 {
     public partial class Login : Form
     {
+        private Bejelentkezessegito UIkisegito;
+
         public Login()
         {
             InitializeComponent();
             this.ActiveControl = txbusername;
             pbloading.Visible = false;
+            UIkisegito = new Bejelentkezessegito(
+                lblhibas,
+                pbloading,
+                pictureBox1,
+                lbluser,
+                lblpass,
+                txbpass,
+                txbusername,
+                lbl1,
+                btnlogin
+                );
         }
 
         private void Login_Load(object sender, EventArgs e)
         {
-           
+            
         }
 
-        
+        public class Bejelentkezessegito
+        {
+            private Label lblHibas;
+            private PictureBox pbLoading;
+            private PictureBox pictureBox1;
+            private Label lblUser;
+            private Label lblPass;
+            private TextBox txbPass;
+            private TextBox txbUsername;
+            private Label lbl1;
+            private Button btnLogin;
+
+            public Bejelentkezessegito(
+                Label lblHibas,
+                PictureBox pbLoading,
+                PictureBox pictureBox1,
+                Label lblUser,
+                Label lblPass,
+                TextBox txbPass,
+                TextBox txbUsername,
+                Label lbl1,
+                Button btnLogin)
+            {
+                this.lblHibas = lblHibas;
+                this.pbLoading = pbLoading;
+                this.pictureBox1 = pictureBox1;
+                this.lblUser = lblUser;
+                this.lblPass = lblPass;
+                this.txbPass = txbPass;
+                this.txbUsername = txbUsername;
+                this.lbl1 = lbl1;
+                this.btnLogin = btnLogin;
+            }
+
+            public void ShowErrorState()
+            {
+                lblHibas.Visible = true;
+                pbLoading.Visible = false;
+                pictureBox1.Visible = true;
+                lblUser.Visible = true;
+                lblPass.Visible = true;
+                txbPass.Visible = true;
+                txbUsername.Visible = true;
+                lbl1.Visible = true;
+                btnLogin.Visible = true;
+
+                txbPass.Text = "";
+                txbPass.Focus();
+            }
+        }
+
+
         private async void btnlogin_Click_1(object sender, EventArgs e)
         {
             if (txbusername.Text != "" && txbpass.Text == "")
@@ -64,10 +128,7 @@ namespace TollÚtdíj
             };
             
             using (MySqlConnection kapcsolat = new MySqlConnection(build.ConnectionString))
-            {
-
-
-                
+            {  
                 try
                 {
                     kapcsolat.Open();
@@ -76,17 +137,7 @@ namespace TollÚtdíj
                 {
 
                     lblhibas.Text = "Adatbetöltési hiba.\r\nEllenőrizze az internetkapcsolatot, majd próbálja újra.";
-                    pbloading.Visible = false;
-                    pictureBox1.Visible = true;
-                    lbluser.Visible = true;
-                    lblpass.Visible = true;
-                    lblhibas.Visible = true;
-                    txbpass.Visible = true;
-                    txbusername.Visible = true;
-                    lbl1.Visible = true;
-                    btnlogin.Visible = true;
-                    txbpass.Text = "";
-                    txbpass.Focus();
+                    UIkisegito.ShowErrorState();
                     return;
                 }
                 
@@ -102,50 +153,25 @@ namespace TollÚtdíj
 
                 if (!read.HasRows)
                 {
-                    
-                    pbloading.Visible = false;
-                    pictureBox1.Visible = true;
-                    lbluser.Visible = true;
-                    lblpass.Visible = true;
-                    lblhibas.Visible = true;
-                    txbpass.Visible = true;
-                    txbusername.Visible = true;
-                    lbl1.Visible = true;
-                    btnlogin.Visible = true;
-                    txbpass.Text = "";
-                    txbpass.Focus();
+
+                    UIkisegito.ShowErrorState();
                     return;
                 }
 
                 read.Read();
                 string JelszoHash = read.GetString(0);
-                bool validjelszo = BCrypt.Net.BCrypt.Verify(jelszo, JelszoHash);
-                read.Read();
-                
+                bool validjelszo = BCrypt.Net.BCrypt.Verify(jelszo, JelszoHash);                            
                 int aktiv = read.GetInt32(1);
+           
 
-                
-                if (aktiv == 0)
+                if (validjelszo == true)
                 {
-                    lblhibas.Text = "A fiók nincs aktiválva.\r\nForduljon az adminisztrátorhoz.";
-                    lblhibas.Visible = true;
-
-                    pbloading.Visible = false;
-                    pictureBox1.Visible = true;
-                    lbluser.Visible = true;
-                    lblpass.Visible = true;
-                    txbpass.Visible = true;
-                    txbusername.Visible = true;
-                    lbl1.Visible = true;
-                    btnlogin.Visible = true;
-
-                    txbpass.Text = "";
-                    txbpass.Focus();
-                    return;
-                }
-
-                if (validjelszo)
-                {
+                    if (aktiv == 0)
+                    {
+                        lblhibas.Text = "A fiók nincs aktiválva.\r\nForduljon az adminisztrátorhoz.";
+                        UIkisegito.ShowErrorState();
+                        return;
+                    }
                     userinterface ui = new userinterface();
                     ui.ShowDialog();
                     this.Close();
@@ -153,19 +179,10 @@ namespace TollÚtdíj
                 else
                 {
                     lblhibas.Text = "Kérjük, ellenőrizze a jelszavát\r\nés az E-mail címét, majd próbálja újra.";
-                    lblhibas.Visible = true;
-                    pbloading.Visible = false;
-                    pictureBox1.Visible = true;
-                    lbluser.Visible = true;
-                    lblpass.Visible = true;
-                    lblhibas.Visible = true;
-                    txbpass.Visible = true;
-                    txbusername.Visible = true;
-                    lbl1.Visible = true;
-                    btnlogin.Visible = true;
-                    txbpass.Text = "";
-                    txbpass.Focus();
+                    UIkisegito.ShowErrorState();
+                    return;
                 }
+                
             }
         }
         #endregion

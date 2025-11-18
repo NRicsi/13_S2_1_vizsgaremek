@@ -26,7 +26,8 @@ SET time_zone = "+00:00";
 --
 -- Tábla szerkezet ehhez a táblához `cegek`
 --
-
+CREATE DATABASE tollutdijadatbazis;
+USE tollutdijadatbazis;
 CREATE TABLE `cegek` (
   `id` int NOT NULL,
   `nev` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
