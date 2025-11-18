@@ -54,7 +54,7 @@ namespace TollÚtdíj
             pbloading.Visible = true;
             await Task.Delay(3000);
 
-
+            #region Backend
             MySqlConnectionStringBuilder build = new MySqlConnectionStringBuilder
             {
                 Server = "localhost",
@@ -62,12 +62,12 @@ namespace TollÚtdíj
                 Password = "mysql",
                 Database = "tollutdijadatbazis"
             };
-
+            
             using (MySqlConnection kapcsolat = new MySqlConnection(build.ConnectionString))
             {
 
 
-                //try catch-be rakni
+                
                 try
                 {
                     kapcsolat.Open();
@@ -95,7 +95,7 @@ namespace TollÚtdíj
                 string jelszo = txbpass.Text;
 
                 var parancs = kapcsolat.CreateCommand();
-                parancs.CommandText = "SELECT jelszo_hash FROM felhasznalok WHERE email = @email";
+                parancs.CommandText = "SELECT jelszo_hash, aktiv FROM felhasznalok WHERE email = @email";
                 parancs.Parameters.AddWithValue("@email", felhasznalonev);
 
                 var read = parancs.ExecuteReader();
@@ -120,6 +120,29 @@ namespace TollÚtdíj
                 read.Read();
                 string JelszoHash = read.GetString(0);
                 bool validjelszo = BCrypt.Net.BCrypt.Verify(jelszo, JelszoHash);
+                read.Read();
+                
+                int aktiv = read.GetInt32(1);
+
+                
+                if (aktiv == 0)
+                {
+                    lblhibas.Text = "A fiók nincs aktiválva.\r\nForduljon az adminisztrátorhoz.";
+                    lblhibas.Visible = true;
+
+                    pbloading.Visible = false;
+                    pictureBox1.Visible = true;
+                    lbluser.Visible = true;
+                    lblpass.Visible = true;
+                    txbpass.Visible = true;
+                    txbusername.Visible = true;
+                    lbl1.Visible = true;
+                    btnlogin.Visible = true;
+
+                    txbpass.Text = "";
+                    txbpass.Focus();
+                    return;
+                }
 
                 if (validjelszo)
                 {
@@ -145,12 +168,12 @@ namespace TollÚtdíj
                 }
             }
         }
+        #endregion
 
-       
-         
-        
-        
 
-        
+
+
+
+
     }
 }
