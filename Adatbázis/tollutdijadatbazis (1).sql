@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Gép: localhost
--- Létrehozás ideje: 2025. Nov 18. 08:45
+-- Létrehozás ideje: 2025. Nov 18. 09:18
 -- Kiszolgáló verziója: 8.0.42
 -- PHP verzió: 8.2.29
 
@@ -26,8 +26,7 @@ SET time_zone = "+00:00";
 --
 -- Tábla szerkezet ehhez a táblához `cegek`
 --
-CREATE DATABASE tollutdijadatbazis;
-USE tollutdijadatbazis;
+
 CREATE TABLE `cegek` (
   `id` int NOT NULL,
   `nev` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
@@ -44,7 +43,8 @@ CREATE TABLE `cegek` (
 INSERT INTO `cegek` (`id`, `nev`, `adoszam`, `cim`, `statusz`, `created_at`) VALUES
 (1, 'Demo Cég', '12345678-1-12', '1234 Budapest, Demo utca 1.', 'aktiv', '2025-11-12 11:07:09'),
 (2, 'Demo Kft.', '12345678-1-25', '1234 Kakas, Liba utca 1.', 'aktiv', '2025-11-18 08:39:54'),
-(3, 'Demo Cég', '12345678-1-12', '1234 Budapest, Demo utca 1.', 'aktiv', '2025-11-18 08:41:55');
+(3, 'Demo Cég', '12345678-1-12', '1234 Budapest, Demo utca 1.', 'aktiv', '2025-11-18 08:41:55'),
+(4, 'Demo Huba Kft.', '12345678-1-26', '1234 Budapest, Kakas utca 1', 'aktiv', '2025-11-18 09:08:29');
 
 -- --------------------------------------------------------
 
@@ -69,7 +69,9 @@ CREATE TABLE `felhasznalok` (
 INSERT INTO `felhasznalok` (`id`, `ceg_id`, `email`, `jelszo_hash`, `teljes_nev`, `aktiv`, `created_at`) VALUES
 (2, 1, 'placeholder@demo.hu', '$2a$12$UBhtdkUq1hGTrTg3sw3W0Oi7qQYPUi1zK0hKhhdYLCjq2kMmBOZsK', 'Demo Felhasználó', 1, '2025-11-12 11:07:18'),
 (3, 2, 'peter.demo@gmail.com', '$2y$10$zgIlByQN8R8WYth6MGhYAObpCd7r.0ak2dQ9NP/P4YvskHHX4jLAa', 'Demo Péter', 1, '2025-11-18 08:39:54'),
-(4, 3, 'jozsi.demo@gmail.com', '$2y$10$YyQofnv673Cqg/ZZEg/QYuJyrEslN8L1H1ZI/2kcPDrH0VupDpctK', 'Demo Józsi', 1, '2025-11-18 08:41:55');
+(4, 3, 'jozsi.demo@gmail.com', '$2y$10$YyQofnv673Cqg/ZZEg/QYuJyrEslN8L1H1ZI/2kcPDrH0VupDpctK', 'Demo Józsi', 1, '2025-11-18 08:41:55'),
+(5, 4, 'hubiii@gmail.com', '$2y$10$mNhtsYI5rOA.HzyA1Je5/uLcuTiR4q30E8/crRN5Y4ERWAvY9ccMm', 'Nagy Huba', 1, '2025-11-18 09:08:29'),
+(6, 1, 'placeholder1@demo.hu', '$2y$10$xesnsmm9fLlElCpBODbnSenLzZVuVEOYm7SqBuerLeb/Ii.NDen.S', 'Demo G', 1, '2025-11-18 09:16:44');
 
 -- --------------------------------------------------------
 
@@ -367,13 +369,13 @@ ALTER TABLE `utvonalak`
 -- AUTO_INCREMENT a táblához `cegek`
 --
 ALTER TABLE `cegek`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT a táblához `felhasznalok`
 --
 ALTER TABLE `felhasznalok`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT a táblához `jarmuvek`
