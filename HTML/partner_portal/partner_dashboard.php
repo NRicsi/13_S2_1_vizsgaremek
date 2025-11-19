@@ -1,3 +1,11 @@
+<?php
+session_start();
+
+if (!isset($_SESSION['user_id'])) {
+    header("Location: partner_login.php");
+    exit;
+}
+?>
 <!DOCTYPE html>
 <html lang="hu">
 <head>
@@ -132,7 +140,7 @@
             </a>
         </nav>
         <div class="pt-6 mt-auto border-t border-[var(--color-border)]">
-             <a href="partner_login.html" class="sidebar-link flex items-center space-x-3 px-4 py-2.5 rounded-md text-gray-400 hover:text-red-400 !border-transparent hover:!border-transparent hover:!bg-red-500/10">
+             <a href="logout.php" class="sidebar-link flex items-center space-x-3 px-4 py-2.5 rounded-md text-gray-400 hover:text-red-400 !border-transparent hover:!border-transparent hover:!bg-red-500/10">
                 <i class="fas fa-sign-out-alt fa-fw w-5 text-center"></i><span class="font-medium">Kijelentkezés</span>
             </a>
         </div>
@@ -154,7 +162,7 @@
                         <div class="absolute right-0 mt-2 w-48 bg-[var(--color-surface-light)] rounded-md shadow-lg py-1 hidden group-hover:block z-50 border border-[var(--color-border)]">
                             <a href="#" class="block px-4 py-2 text-sm text-gray-300 hover:bg-[var(--color-primary)]/20 hover:text-white">Profilom</a>
                             <a href="#settingsContent" class="sidebar-link-trigger block px-4 py-2 text-sm text-gray-300 hover:bg-[var(--color-primary)]/20 hover:text-white">Beállítások</a>
-                            <a href="partner_login.html" class="block px-4 py-2 text-sm text-red-400 hover:bg-red-500/20 hover:text-white">Kijelentkezés</a>
+                            <a href="logout.php" class="block px-4 py-2 text-sm text-red-400 hover:bg-red-500/20 hover:text-white">Kijelentkezés</a>
                         </div>
                     </div>
                 </div>
@@ -328,7 +336,7 @@
                 if (targetId && targetId.startsWith('#') && targetId.length > 1) {
                     e.preventDefault();
                     switchContent(targetId);
-                } else if (targetId === 'partner_login.html') {
+                } else if (targetId === 'logout.php') {
                     return true; // Kijelentkezés
                 } else {
                      e.preventDefault();
