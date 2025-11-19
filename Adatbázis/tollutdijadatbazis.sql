@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Gép: localhost
--- Létrehozás ideje: 2025. Nov 18. 09:18
+-- Létrehozás ideje: 2025. Nov 19. 11:13
 -- Kiszolgáló verziója: 8.0.42
 -- PHP verzió: 8.2.29
 
@@ -20,14 +20,15 @@ SET time_zone = "+00:00";
 --
 -- Adatbázis: `tollutdijadatbazis`
 --
+CREATE DATABASE IF NOT EXISTS `tollutdijadatbazis` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
+USE `tollutdijadatbazis`;
 
 -- --------------------------------------------------------
 
 --
 -- Tábla szerkezet ehhez a táblához `cegek`
 --
-CREATE DATABASE tollutdijadatbazis;
-USE tollutdijadatbazis;
+
 CREATE TABLE `cegek` (
   `id` int NOT NULL,
   `nev` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
@@ -60,19 +61,20 @@ CREATE TABLE `felhasznalok` (
   `jelszo_hash` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `teljes_nev` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
   `aktiv` tinyint(1) DEFAULT '1',
-  `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP
+  `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `role` enum('rendszer_admin','ceg_admin','operator') COLLATE utf8mb4_general_ci NOT NULL DEFAULT 'operator'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- A tábla adatainak kiíratása `felhasznalok`
 --
 
-INSERT INTO `felhasznalok` (`id`, `ceg_id`, `email`, `jelszo_hash`, `teljes_nev`, `aktiv`, `created_at`) VALUES
-(2, 1, 'placeholder@demo.hu', '$2a$12$UBhtdkUq1hGTrTg3sw3W0Oi7qQYPUi1zK0hKhhdYLCjq2kMmBOZsK', 'Demo Felhasználó', 1, '2025-11-12 11:07:18'),
-(3, 2, 'peter.demo@gmail.com', '$2y$10$zgIlByQN8R8WYth6MGhYAObpCd7r.0ak2dQ9NP/P4YvskHHX4jLAa', 'Demo Péter', 1, '2025-11-18 08:39:54'),
-(4, 3, 'jozsi.demo@gmail.com', '$2y$10$YyQofnv673Cqg/ZZEg/QYuJyrEslN8L1H1ZI/2kcPDrH0VupDpctK', 'Demo Józsi', 1, '2025-11-18 08:41:55'),
-(5, 4, 'hubiii@gmail.com', '$2y$10$mNhtsYI5rOA.HzyA1Je5/uLcuTiR4q30E8/crRN5Y4ERWAvY9ccMm', 'Nagy Huba', 1, '2025-11-18 09:08:29'),
-(6, 1, 'placeholder1@demo.hu', '$2y$10$xesnsmm9fLlElCpBODbnSenLzZVuVEOYm7SqBuerLeb/Ii.NDen.S', 'Demo G', 1, '2025-11-18 09:16:44');
+INSERT INTO `felhasznalok` (`id`, `ceg_id`, `email`, `jelszo_hash`, `teljes_nev`, `aktiv`, `created_at`, `role`) VALUES
+(2, 1, 'placeholder@demo.hu', '$2a$12$UBhtdkUq1hGTrTg3sw3W0Oi7qQYPUi1zK0hKhhdYLCjq2kMmBOZsK', 'Demo Felhasználó', 1, '2025-11-12 11:07:18', 'ceg_admin'),
+(3, 2, 'peter.demo@gmail.com', '$2y$10$zgIlByQN8R8WYth6MGhYAObpCd7r.0ak2dQ9NP/P4YvskHHX4jLAa', 'Demo Péter', 1, '2025-11-18 08:39:54', 'rendszer_admin'),
+(4, 3, 'jozsi.demo@gmail.com', '$2y$10$YyQofnv673Cqg/ZZEg/QYuJyrEslN8L1H1ZI/2kcPDrH0VupDpctK', 'Demo Józsi', 1, '2025-11-18 08:41:55', 'operator'),
+(5, 4, 'hubiii@gmail.com', '$2y$10$mNhtsYI5rOA.HzyA1Je5/uLcuTiR4q30E8/crRN5Y4ERWAvY9ccMm', 'Nagy Huba', 0, '2025-11-18 09:08:29', 'operator'),
+(6, 1, 'placeholder1@demo.hu', '$2y$10$xesnsmm9fLlElCpBODbnSenLzZVuVEOYm7SqBuerLeb/Ii.NDen.S', 'Demo G', 1, '2025-11-18 09:16:44', 'operator');
 
 -- --------------------------------------------------------
 
