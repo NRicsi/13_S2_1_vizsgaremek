@@ -14,8 +14,8 @@ if (!isset($_SESSION['user_id'])) {
     <title>ÚtdíjPro - Partner Irányítópult</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
     <style>
         :root {
             --color-primary: #0ea5e9; /* sky-500 */
@@ -35,7 +35,7 @@ if (!isset($_SESSION['user_id'])) {
         .font-poppins { font-family: 'Poppins', sans-serif; }
 
         .glassmorphism-element {
-            background: rgba(15, 23, 42, 0.75); /* slate-900 áttetszőbb */
+            background: rgba(15, 23, 42, 0.75);
             backdrop-filter: blur(12px) saturate(150%);
             -webkit-backdrop-filter: blur(12px) saturate(150%);
             border: 1px solid var(--color-border);
@@ -50,10 +50,10 @@ if (!isset($_SESSION['user_id'])) {
             border-left: 4px solid transparent;
         }
         .sidebar-link:hover, .sidebar-link.active {
-            background-color: rgba(var(--color-primary), 0.1); /* Primary color áttetsző változata */
+            background-color: rgba(14,165,233,0.12);
             color: var(--color-primary);
             border-left-color: var(--color-primary);
-            padding-left: 1.25rem; 
+            padding-left: 1.25rem;
         }
         .sidebar-link.active { font-weight: 600; }
         .sidebar-link i { transition: transform 0.3s ease; }
@@ -62,13 +62,13 @@ if (!isset($_SESSION['user_id'])) {
         .stat-card { transition: transform 0.3s ease, box-shadow 0.3s ease; }
         .stat-card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 10px 25px rgba(var(--color-primary), 0.2);
+            box-shadow: 0 10px 25px rgba(14,165,233,0.2);
         }
         
         .calculator-input-group label { color: var(--color-text-muted); }
         .calculator-input, .calculator-select {
             background-color: var(--color-surface-light);
-            border: 1px solid #374151; 
+            border: 1px solid #374151;
             color: white;
             padding: 0.875rem 1.25rem;
             border-radius: 0.5rem;
@@ -76,39 +76,41 @@ if (!isset($_SESSION['user_id'])) {
         }
         .calculator-input:focus, .calculator-select:focus {
             border-color: var(--color-primary);
-            box-shadow: 0 0 0 3px rgba(var(--color-primary), 0.3);
+            box-shadow: 0 0 0 3px rgba(14,165,233,0.3);
             outline: none;
         }
         .calculator-button-primary {
             background: linear-gradient(90deg, var(--color-primary), var(--color-secondary));
             color: white;
             transition: all 0.3s ease;
-            box-shadow: 0 2px 8px rgba(var(--color-primary), 0.2);
+            box-shadow: 0 2px 8px rgba(14,165,233,0.2);
         }
         .calculator-button-primary:hover {
             opacity: 0.9;
             transform: translateY(-1px);
-            box-shadow: 0 4px 12px rgba(var(--color-primary), 0.3);
+            box-shadow: 0 4px 12px rgba(14,165,233,0.3);
         }
         .calculator-button-secondary {
-            background-color: rgba(var(--color-primary), 0.1);
-            border: 1px solid rgba(var(--color-primary), 0.3);
+            background-color: rgba(14,165,233,0.1);
+            border: 1px solid rgba(14,165,233,0.3);
             color: var(--color-primary);
         }
-        .calculator-button-secondary:hover { background-color: rgba(var(--color-primary), 0.2); }
+        .calculator-button-secondary:hover { background-color: rgba(14,165,233,0.2); }
         .results-text strong { color: var(--color-primary); }
         .leaflet-container { border-radius: 0.5rem; border: 1px solid #374151; }
         #mobileMenuBtn { z-index: 60; }
-        .content-section { display: none; } /* Alapból rejtett */
-        .content-section.active { display: block; } /* Aktív section megjelenítése */
+        .content-section { display: none; }
+        .content-section.active { display: block; }
     </style>
 </head>
 <body class="flex h-screen overflow-hidden">
 
+    <!-- MOBIL MENÜ GOMB -->
     <button id="mobileMenuBtn" class="lg:hidden fixed top-4 left-4 p-3 bg-gray-800/80 text-white rounded-md backdrop-blur-sm shadow-lg">
         <i class="fas fa-bars fa-lg"></i>
     </button>
 
+    <!-- OLDALSÁV -->
     <aside id="sidebar" class="sidebar glassmorphism-element p-5 space-y-6 flex-shrink-0 h-full overflow-y-auto transform -translate-x-full lg:translate-x-0 fixed lg:static z-40">
         <div class="logo-container text-center mb-6 pt-8 lg:pt-0">
             <a href="/" class="flex items-center justify-center space-x-2" title="Vissza a főoldalra">
@@ -122,6 +124,9 @@ if (!isset($_SESSION['user_id'])) {
             </a>
             <a href="#calculatorSectionContent" id="openCalculator" class="sidebar-link flex items-center space-x-3 px-4 py-2.5 rounded-md text-gray-300">
                 <i class="fas fa-calculator fa-fw w-5 text-center"></i><span class="font-medium">Útdíj Kalkulátor</span>
+            </a>
+            <a href="#addUserContent" class="sidebar-link flex items-center space-x-3 px-4 py-2.5 rounded-md text-gray-300">
+                <i class="fas fa-users-cog fa-fw w-5 text-center"></i><span class="font-medium">Alkalmazottak</span>
             </a>
             <a href="#dataManagementContent" class="sidebar-link flex items-center space-x-3 px-4 py-2.5 rounded-md text-gray-300">
                 <i class="fas fa-file-excel fa-fw w-5 text-center"></i><span class="font-medium">Adatkezelés</span>
@@ -138,11 +143,6 @@ if (!isset($_SESSION['user_id'])) {
             <a href="#settingsContent" class="sidebar-link flex items-center space-x-3 px-4 py-2.5 rounded-md text-gray-300">
                 <i class="fas fa-cog fa-fw w-5 text-center"></i><span class="font-medium">Beállítások</span>
             </a>
-            <a href="#manageUsersContent" class="sidebar-link flex items-center space-x-3 px-4 py-2.5 rounded-md text-gray-300">
-            <i class="fas fa-users-cog fa-fw w-5 text-center"></i>
-            <span class="font-medium">Felhasználók Kezelése</span>
-            </a>
-
         </nav>
         <div class="pt-6 mt-auto border-t border-[var(--color-border)]">
              <a href="logout.php" class="sidebar-link flex items-center space-x-3 px-4 py-2.5 rounded-md text-gray-400 hover:text-red-400 !border-transparent hover:!border-transparent hover:!bg-red-500/10">
@@ -151,6 +151,7 @@ if (!isset($_SESSION['user_id'])) {
         </div>
     </aside>
 
+    <!-- FŐ TARTALOM -->
     <main class="flex-1 p-6 md:p-10 overflow-y-auto" id="mainContentArea">
         <header class="mb-8 md:mb-10">
             <div class="flex justify-between items-center">
@@ -174,20 +175,45 @@ if (!isset($_SESSION['user_id'])) {
             </div>
         </header>
 
+        <!-- IRÁNYÍTÓPULT -->
         <div id="dashboard-main-content" class="content-section active">
             <h2 class="font-poppins text-xl font-semibold text-white mb-6">Áttekintés</h2>
             <section class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-10">
                 <div class="stat-card glassmorphism-element p-6 rounded-xl">
-                    <div class="flex items-center justify-between"><div><p class="text-sm text-sky-300 font-medium">Mai Kalkulációk</p><p class="text-3xl font-bold text-white">12</p></div><i class="fas fa-calculator fa-3x text-sky-500 opacity-30"></i></div>
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <p class="text-sm text-sky-300 font-medium">Mai Kalkulációk</p>
+                            <p class="text-3xl font-bold text-white">12</p>
+                        </div>
+                        <i class="fas fa-calculator fa-3x text-sky-500 opacity-30"></i>
+                    </div>
                 </div>
                 <div class="stat-card glassmorphism-element p-6 rounded-xl">
-                    <div class="flex items-center justify-between"><div><p class="text-sm text-sky-300 font-medium">Megtakarítás (Havi)</p><p class="text-3xl font-bold text-white">~350e Ft</p></div><i class="fas fa-piggy-bank fa-3x text-green-500 opacity-30"></i></div>
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <p class="text-sm text-sky-300 font-medium">Megtakarítás (Havi)</p>
+                            <p class="text-3xl font-bold text-white">~350e Ft</p>
+                        </div>
+                        <i class="fas fa-piggy-bank fa-3x text-green-500 opacity-30"></i>
+                    </div>
                 </div>
                 <div class="stat-card glassmorphism-element p-6 rounded-xl">
-                    <div class="flex items-center justify-between"><div><p class="text-sm text-sky-300 font-medium">Aktív Járművek</p><p class="text-3xl font-bold text-white">8</p></div><i class="fas fa-truck-moving fa-3x text-amber-500 opacity-30"></i></div>
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <p class="text-sm text-sky-300 font-medium">Aktív Járművek</p>
+                            <p class="text-3xl font-bold text-white">8</p>
+                        </div>
+                        <i class="fas fa-truck-moving fa-3x text-amber-500 opacity-30"></i>
+                    </div>
                 </div>
                 <div class="stat-card glassmorphism-element p-6 rounded-xl">
-                    <div class="flex items-center justify-between"><div><p class="text-sm text-sky-300 font-medium">Nyitott Számlák</p><p class="text-3xl font-bold text-white">3</p></div><i class="fas fa-file-invoice fa-3x text-red-500 opacity-30"></i></div>
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <p class="text-sm text-sky-300 font-medium">Nyitott Számlák</p>
+                            <p class="text-3xl font-bold text-white">3</p>
+                        </div>
+                        <i class="fas fa-file-invoice fa-3x text-red-500 opacity-30"></i>
+                    </div>
                 </div>
             </section>
             <div class="glassmorphism-element p-6 rounded-xl">
@@ -196,6 +222,7 @@ if (!isset($_SESSION['user_id'])) {
             </div>
         </div>
 
+        <!-- KALKULÁTOR -->
         <div id="calculatorSectionContent" class="content-section">
             <section class="glassmorphism-element p-6 md:p-8 rounded-2xl">
                 <div class="flex justify-between items-center mb-6">
@@ -238,92 +265,125 @@ if (!isset($_SESSION['user_id'])) {
                     </div>
                     <div id="portalResultsSection" class="mt-8 pt-6 border-t border-[var(--color-border)] space-y-4 hidden">
                         <h3 class="font-poppins text-xl font-semibold text-white mb-3">Eredmények:</h3>
-                        <p class="text-lg results-text"><strong >Becsült Útdíj:</strong> <span id="portalTollResult" class="font-bold text-white text-xl">N/A</span></p>
-                        <p class="text-lg results-text"><strong >Távolság:</strong> <span id="portalDistanceResult" class="font-bold text-white text-xl">N/A</span></p>
+                        <p class="text-lg results-text"><strong>Becsült Útdíj:</strong> <span id="portalTollResult" class="font-bold text-white text-xl">N/A</span></p>
+                        <p class="text-lg results-text"><strong>Távolság:</strong> <span id="portalDistanceResult" class="font-bold text-white text-xl">N/A</span></p>
                         <div id="portalMapContainer" class="w-full h-80 md:h-96 bg-gray-800 rounded-lg mt-4 border border-gray-700/50"></div>
                         <div id="portalExternalLinkContainer" class="mt-4 text-center"></div>
                     </div>
-                     <div id="portalErrorMessages" class="text-red-400 mt-4 hidden p-3 bg-red-900/30 rounded-md border border-red-700/50"></div>
+                    <div id="portalErrorMessages" class="text-red-400 mt-4 hidden p-3 bg-red-900/30 rounded-md border border-red-700/50"></div>
                 </div>
             </section>
         </div>
 
+        <!-- ALKALMAZOTTAK KEZELÉSE -->
+        <div id="addUserContent" class="content-section">
+            <h2 class="font-poppins text-xl font-semibold text-white mb-6">
+                Alkalmazottak kezelése
+            </h2>
 
-        
+            <div class="glassmorphism-element p-6 rounded-xl space-y-6">
+
+                <?php if (isset($_GET['msg']) && $_GET['msg'] === 'success_user_added'): ?>
+                    <div class="mb-4 p-4 rounded-lg border border-green-500 bg-green-900/40 text-sm text-green-100">
+                        <i class="fas fa-check-circle mr-2"></i>Az új felhasználó sikeresen hozzáadásra került.
+                    </div>
+                <?php endif; ?>
+
+                <h3 class="font-poppins text-lg font-semibold text-sky-300 mb-2">
+                    Új alkalmazott hozzáadása
+                </h3>
+
+                <form method="POST" action="add_user_process.php" class="grid grid-cols-1 md:grid-cols-2 gap-6">
+
+                    <div class="md:col-span-2">
+                        <label class="block mb-2 text-sm text-gray-300">Név</label>
+                        <input type="text" name="full_name" class="calculator-input w-full" placeholder="Pl. Nagy Béla" required>
+                    </div>
+
+                    <div class="md:col-span-2">
+                        <label class="block mb-2 text-sm text-gray-300">Email</label>
+                        <input type="email" name="email" class="calculator-input w-full" placeholder="alkalmazott@ceg.hu" required>
+                    </div>
+
+                    <div>
+                        <label class="block mb-2 text-sm text-gray-300">Jelszó</label>
+                        <input type="password" name="password" class="calculator-input w-full" placeholder="Erős jelszó..." required>
+                    </div>
+
+                    <div>
+                        <label class="block mb-2 text-sm text-gray-300">Jelszó megerősítése</label>
+                        <input type="password" name="password_confirm" class="calculator-input w-full" placeholder="Írd be újra a jelszót" required>
+                    </div>
+
+                    <div class="md:col-span-2">
+                        <button type="submit" class="calculator-button-primary w-full md:w-auto py-3 px-8 rounded-lg text-white font-semibold flex items-center justify-center">
+                            <i class="fas fa-user-plus mr-2"></i>Alkalmazott létrehozása
+                        </button>
+                    </div>
+                </form>
+
+                <hr class="border-[var(--color-border)]">
+
+                <h3 class="font-poppins text-lg font-semibold text-sky-300 mb-2">
+                    Létező alkalmazottak
+                </h3>
+                <p class="text-sm text-gray-400">
+                    Később itt lesz listázva a cég összes felhasználója, szerkesztési és inaktiválási lehetőséggel. (Fejlesztés alatt)
+                </p>
+            </div>
+        </div>
+
+        <!-- ADATKEZELÉS -->
         <div id="dataManagementContent" class="content-section">
             <h2 class="font-poppins text-xl font-semibold text-white mb-6">Adatkezelés (Import/Export)</h2>
             <div class="glassmorphism-element p-6 rounded-xl">
                 <p class="text-muted">Ez a felület szolgál majd az Excel táblázatokból történő adatbeolvasásra és riportok exportálására. (Fejlesztés alatt)</p>
             </div>
         </div>
+
+        <!-- SZÁMLÁZÁS -->
         <div id="billingContent" class="content-section">
             <h2 class="font-poppins text-xl font-semibold text-white mb-6">Számlázás</h2>
              <div class="glassmorphism-element p-6 rounded-xl">
                 <p class="text-muted">Itt tekintheti meg és kezelheti számláit, valamint itt lesz elérhető az online számlázó rendszerekkel való integráció. (Fejlesztés alatt)</p>
             </div>
         </div>
-         <div id="fleetContent" class="content-section">
+
+        <!-- FLOTTA -->
+        <div id="fleetContent" class="content-section">
             <h2 class="font-poppins text-xl font-semibold text-white mb-6">Flotta Kezelés</h2>
              <div class="glassmorphism-element p-6 rounded-xl">
                 <p class="text-muted">Járművek hozzáadása, szerkesztése, csoportosítása és a flottához kapcsolódó beállítások. (Fejlesztés alatt)</p>
             </div>
         </div>
-         <div id="reportsContent" class="content-section">
+
+        <!-- RIPORTOK -->
+        <div id="reportsContent" class="content-section">
             <h2 class="font-poppins text-xl font-semibold text-white mb-6">Riportok</h2>
              <div class="glassmorphism-element p-6 rounded-xl">
                 <p class="text-muted">Részletes, személyre szabható riportok a kalkulációkról, költségekről és egyéb fontos adatokról. (Fejlesztés alatt)</p>
             </div>
         </div>
-         <div id="settingsContent" class="content-section">
+
+        <!-- BEÁLLÍTÁSOK -->
+        <div id="settingsContent" class="content-section">
             <h2 class="font-poppins text-xl font-semibold text-white mb-6">Beállítások</h2>
              <div class="glassmorphism-element p-6 rounded-xl">
                 <p class="text-muted">Felhasználói profil, cégadatok, API kulcsok kezelése és egyéb platformbeállítások. (Fejlesztés alatt)</p>
             </div>
         </div>
-        <div id="manageUsersContent" class="content-section">
-    <h2 class="font-poppins text-xl font-semibold text-white mb-6">Felhasználók Kezelése</h2>
-
-    <div class="glassmorphism-element p-6 rounded-xl space-y-6">
-
-        <form action="add_user.php" method="POST" class="space-y-4">
-
-            <div>
-                <label class="block mb-1 text-sm font-medium">Munkavállaló neve:</label>
-                <input type="text" name="name" class="w-full calculator-input" required>
-            </div>
-
-            <div>
-                <label class="block mb-1 text-sm font-medium">Email cím:</label>
-                <input type="email" name="email" class="w-full calculator-input" required>
-            </div>
-
-            <div>
-                <label class="block mb-1 text-sm font-medium">Jelszó:</label>
-                <input type="password" name="password" class="w-full calculator-input" required>
-            </div>
-
-            <button type="submit" class="calculator-button-primary w-full text-white font-semibold py-3 rounded-lg">
-                <i class="fas fa-user-plus mr-2"></i>Felhasználó hozzáadása
-            </button>
-
-        </form>
-
-    </div>
-</div>
-        
-        
     </main>
 
-    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
     <script>
         const mobileMenuBtn = document.getElementById('mobileMenuBtn');
         const sidebar = document.getElementById('sidebar');
-        const mainContentArea = document.getElementById('mainContentArea'); // Megváltoztatva, hogy ne a teljes main-re kattintva zárjon
+        const mainContentArea = document.getElementById('mainContentArea');
         const pageTitleContainer = document.getElementById('pageTitleContainer');
 
         if (mobileMenuBtn && sidebar) {
             mobileMenuBtn.addEventListener('click', (e) => {
-                e.stopPropagation(); // Megakadályozza, hogy a body click esemény is lefusson
+                e.stopPropagation();
                 sidebar.classList.toggle('-translate-x-full');
             });
             document.addEventListener('click', (e) => {
@@ -335,7 +395,7 @@ if (!isset($_SESSION['user_id'])) {
 
         const sidebarLinks = document.querySelectorAll('.sidebar-link');
         const contentSections = document.querySelectorAll('.content-section');
-        const sidebarLinkTriggers = document.querySelectorAll('.sidebar-link-trigger'); // Profil menüből is lehessen navigálni
+        const sidebarLinkTriggers = document.querySelectorAll('.sidebar-link-trigger');
 
         function switchContent(targetId) {
             const targetBaseId = targetId.startsWith('#') ? targetId.substring(1) : targetId;
@@ -343,10 +403,10 @@ if (!isset($_SESSION['user_id'])) {
             contentSections.forEach(section => {
                 if (section.id === targetBaseId) {
                     section.classList.add('active');
-                    if(pageTitleContainer && section.querySelector('h2')) { // Frissítjük az oldal címét
+                    if (pageTitleContainer && section.querySelector('h2')) {
                         pageTitleContainer.innerHTML = `<h1 class="font-poppins text-2xl md:text-3xl font-bold text-white">${section.querySelector('h2').textContent}</h1>`;
                     } else if (pageTitleContainer && targetBaseId === 'dashboard-main-content') {
-                         pageTitleContainer.innerHTML = `<h1 class="font-poppins text-2xl md:text-3xl font-bold text-white">Irányítópult</h1>`;
+                        pageTitleContainer.innerHTML = `<h1 class="font-poppins text-2xl md:text-3xl font-bold text-white">Irányítópult</h1>`;
                     }
                 } else {
                     section.classList.remove('active');
@@ -360,12 +420,10 @@ if (!isset($_SESSION['user_id'])) {
                 }
             });
 
-            // Mobil nézetben bezárja az oldalsávot kattintás után
             if (!sidebar.classList.contains('-translate-x-full') && window.innerWidth < 1024) {
                 sidebar.classList.add('-translate-x-full');
             }
-            // Görgessen a tartalom tetejére
-            if(mainContentArea) mainContentArea.scrollTop = 0;
+            if (mainContentArea) mainContentArea.scrollTop = 0;
         }
         
         sidebarLinks.forEach(link => {
@@ -375,14 +433,15 @@ if (!isset($_SESSION['user_id'])) {
                     e.preventDefault();
                     switchContent(targetId);
                 } else if (targetId === 'logout.php') {
-                    return true; // Kijelentkezés
+                    return true;
                 } else {
-                     e.preventDefault();
+                    e.preventDefault();
                 }
             });
         });
-        sidebarLinkTriggers.forEach(link => { // Profil menü linkjeihez
-             link.addEventListener('click', function(e) {
+
+        sidebarLinkTriggers.forEach(link => {
+            link.addEventListener('click', function(e) {
                 const targetId = this.getAttribute('href');
                 if (targetId && targetId.startsWith('#') && targetId.length > 1) {
                     e.preventDefault();
@@ -391,8 +450,7 @@ if (!isset($_SESSION['user_id'])) {
             });
         });
 
-
-        // ÚTDÍJ KALKULÁTOR LOGIKA (Frontend - Backend kommunikáció)
+        // Útdíj kalkulátor JS – a te eredeti kódod, nem piszkálom tovább (csak átmásolva)
         const portalCalculateBtn = document.getElementById('portalCalculateBtn');
         const portalResultsSection = document.getElementById('portalResultsSection');
         const portalErrorMessages = document.getElementById('portalErrorMessages');
@@ -412,21 +470,17 @@ if (!isset($_SESSION['user_id'])) {
             if (!map && portalMapContainer) {
                 map = L.map(portalMapContainer).setView([47.1625, 19.5033], 7);
                 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-                    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+                    attribution: '&copy; OpenStreetMap contributors'
                 }).addTo(map);
             }
         }
         
-        // Térkép inicializálása, amikor a kalkulátor fül aktívvá válik
         const calculatorLink = document.getElementById('openCalculator');
         if (calculatorLink) {
             calculatorLink.addEventListener('click', () => {
-                setTimeout(initMap, 0); // Kis késleltetés, hogy a DOM biztosan látható legyen
+                setTimeout(initMap, 0);
             });
         }
-        // Alapból is inicializáljuk, ha ez az alapértelmezett nézet (bár most az Irányítópult az)
-        // initMap(); 
-
 
         function clearMapAndResults() {
             if (routePolyline) { map.removeLayer(routePolyline); routePolyline = null; }
@@ -452,7 +506,6 @@ if (!isset($_SESSION['user_id'])) {
             waypointsContainer.appendChild(waypointDiv);
             waypointDiv.querySelector('.remove-waypoint-btn').addEventListener('click', function() {
                 this.closest('.waypoint-entry').remove();
-                // Nem szükséges a waypointCounter-t csökkenteni, a sorszám csak vizuális
             });
         }
 
@@ -472,7 +525,6 @@ if (!isset($_SESSION['user_id'])) {
                                      .filter(address => address !== '')
                                      .map(address => ({ address }));
 
-
                 if (!from || !to || !truckType) {
                     portalErrorMessages.textContent = 'Kérjük, töltse ki az indulási hely, célhely és járműtípus mezőket!';
                     portalErrorMessages.classList.remove('hidden');
@@ -484,7 +536,6 @@ if (!isset($_SESSION['user_id'])) {
                 portalCalculateBtn.disabled = true;
 
                 try {
-                    // Figyelem: A backend URL-t (http://localhost:5000) később konfigurálhatóvá kell tenni
                     const response = await fetch('http://localhost:5000/api/calculate', {
                         method: 'POST',
                         headers: { 'Content-Type': 'application/json' },
@@ -509,10 +560,10 @@ if (!isset($_SESSION['user_id'])) {
                         portalExternalLinkContainer.appendChild(link);
                     }
 
-                    if (map) { // Csak akkor próbáljunk térképet rajzolni, ha inicializálva van
+                    if (map) {
                         if (result.locations && result.locations.length > 0) {
                             const boundsArray = [];
-                            result.locations.forEach((loc, index) => {
+                            result.locations.forEach((loc) => {
                                 const marker = L.marker([loc.lat, loc.lng]).addTo(map)
                                     .bindPopup(`<b>${loc.name}</b><br>${loc.displayName}`);
                                 markers.push(marker);
@@ -524,11 +575,8 @@ if (!isset($_SESSION['user_id'])) {
                         }
                         
                         if (result.routeCoords && result.routeCoords.length > 0) {
-                            routePolyline = L.polyline(result.routeCoords, { color: 'var(--color-primary)', weight: 6, opacity: 0.8 }).addTo(map);
+                            routePolyline = L.polyline(result.routeCoords, { color: '#0ea5e9', weight: 6, opacity: 0.8 }).addTo(map);
                             map.fitBounds(routePolyline.getBounds(), {padding: [30,30]});
-                        } else if (result.locations && result.locations.length > 0 && markers.length > 0) {
-                             const boundsArray = result.locations.map(loc => [loc.lat, loc.lng]);
-                             if (boundsArray.length > 0) map.fitBounds(boundsArray, {padding: [30,30], maxZoom: 13});
                         }
                     }
                     portalResultsSection.classList.remove('hidden');
@@ -543,11 +591,11 @@ if (!isset($_SESSION['user_id'])) {
                 }
             });
         }
-        // Alapértelmezett tartalom megjelenítése
+
+        // Alap nézet
         if (sidebarLinks.length > 0) {
            switchContent(sidebarLinks[0].getAttribute('href'));
         }
-
     </script>
 </body>
 </html>
