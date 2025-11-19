@@ -138,6 +138,11 @@ if (!isset($_SESSION['user_id'])) {
             <a href="#settingsContent" class="sidebar-link flex items-center space-x-3 px-4 py-2.5 rounded-md text-gray-300">
                 <i class="fas fa-cog fa-fw w-5 text-center"></i><span class="font-medium">Beállítások</span>
             </a>
+            <a href="#manageUsersContent" class="sidebar-link flex items-center space-x-3 px-4 py-2.5 rounded-md text-gray-300">
+            <i class="fas fa-users-cog fa-fw w-5 text-center"></i>
+            <span class="font-medium">Felhasználók Kezelése</span>
+            </a>
+
         </nav>
         <div class="pt-6 mt-auto border-t border-[var(--color-border)]">
              <a href="logout.php" class="sidebar-link flex items-center space-x-3 px-4 py-2.5 rounded-md text-gray-400 hover:text-red-400 !border-transparent hover:!border-transparent hover:!bg-red-500/10">
@@ -243,6 +248,8 @@ if (!isset($_SESSION['user_id'])) {
             </section>
         </div>
 
+
+        
         <div id="dataManagementContent" class="content-section">
             <h2 class="font-poppins text-xl font-semibold text-white mb-6">Adatkezelés (Import/Export)</h2>
             <div class="glassmorphism-element p-6 rounded-xl">
@@ -273,6 +280,37 @@ if (!isset($_SESSION['user_id'])) {
                 <p class="text-muted">Felhasználói profil, cégadatok, API kulcsok kezelése és egyéb platformbeállítások. (Fejlesztés alatt)</p>
             </div>
         </div>
+        <div id="manageUsersContent" class="content-section">
+    <h2 class="font-poppins text-xl font-semibold text-white mb-6">Felhasználók Kezelése</h2>
+
+    <div class="glassmorphism-element p-6 rounded-xl space-y-6">
+
+        <form action="add_user.php" method="POST" class="space-y-4">
+
+            <div>
+                <label class="block mb-1 text-sm font-medium">Munkavállaló neve:</label>
+                <input type="text" name="name" class="w-full calculator-input" required>
+            </div>
+
+            <div>
+                <label class="block mb-1 text-sm font-medium">Email cím:</label>
+                <input type="email" name="email" class="w-full calculator-input" required>
+            </div>
+
+            <div>
+                <label class="block mb-1 text-sm font-medium">Jelszó:</label>
+                <input type="password" name="password" class="w-full calculator-input" required>
+            </div>
+
+            <button type="submit" class="calculator-button-primary w-full text-white font-semibold py-3 rounded-lg">
+                <i class="fas fa-user-plus mr-2"></i>Felhasználó hozzáadása
+            </button>
+
+        </form>
+
+    </div>
+</div>
+        
         
     </main>
 
