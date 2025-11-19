@@ -28,86 +28,97 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.ListBox lbdriverlist;
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(userinterface));
-            this.lbl_loggedinas = new System.Windows.Forms.Label();
-            this.lbl2 = new System.Windows.Forms.Label();
-            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            lbdriverlist = new System.Windows.Forms.ListBox();
-            this.tableLayoutPanel1.SuspendLayout();
+            this.btncegkezeles = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
+            this.btnuthozzaadas = new System.Windows.Forms.Button();
+            this.button4 = new System.Windows.Forms.Button();
+            this.button5 = new System.Windows.Forms.Button();
+            this.button6 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
-            // lbdriverlist
+            // btncegkezeles
             // 
-            lbdriverlist.Dock = System.Windows.Forms.DockStyle.Fill;
-            lbdriverlist.FormattingEnabled = true;
-            lbdriverlist.Location = new System.Drawing.Point(3, 62);
-            lbdriverlist.Name = "lbdriverlist";
-            this.tableLayoutPanel1.SetRowSpan(lbdriverlist, 2);
-            lbdriverlist.Size = new System.Drawing.Size(207, 596);
-            lbdriverlist.TabIndex = 1;
+            this.btncegkezeles.Location = new System.Drawing.Point(73, 73);
+            this.btncegkezeles.Name = "btncegkezeles";
+            this.btncegkezeles.Size = new System.Drawing.Size(97, 23);
+            this.btncegkezeles.TabIndex = 0;
+            this.btncegkezeles.Text = "Cégek kezelése";
+            this.btncegkezeles.UseCompatibleTextRendering = true;
+            this.btncegkezeles.UseVisualStyleBackColor = true;
             // 
-            // lbl_loggedinas
+            // button2
             // 
-            this.lbl_loggedinas.AutoSize = true;
-            this.lbl_loggedinas.Location = new System.Drawing.Point(3, 0);
-            this.lbl_loggedinas.Name = "lbl_loggedinas";
-            this.lbl_loggedinas.Size = new System.Drawing.Size(35, 12);
-            this.lbl_loggedinas.TabIndex = 0;
-            this.lbl_loggedinas.Text = "label1";
+            this.button2.Location = new System.Drawing.Point(73, 117);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(97, 23);
+            this.button2.TabIndex = 1;
+            this.button2.Text = "Jármű törlés";
+            this.button2.UseVisualStyleBackColor = true;
             // 
-            // lbl2
+            // btnuthozzaadas
             // 
-            this.lbl2.AutoSize = true;
-            this.lbl2.Location = new System.Drawing.Point(3, 43);
-            this.lbl2.Name = "lbl2";
-            this.lbl2.Size = new System.Drawing.Size(47, 13);
-            this.lbl2.TabIndex = 2;
-            this.lbl2.Text = "Sofőrök:";
+            this.btnuthozzaadas.Location = new System.Drawing.Point(73, 161);
+            this.btnuthozzaadas.Name = "btnuthozzaadas";
+            this.btnuthozzaadas.Size = new System.Drawing.Size(97, 23);
+            this.btnuthozzaadas.TabIndex = 2;
+            this.btnuthozzaadas.Text = "Út hozzáadás";
+            this.btnuthozzaadas.UseVisualStyleBackColor = true;
             // 
-            // tableLayoutPanel1
+            // button4
             // 
-            this.tableLayoutPanel1.ColumnCount = 5;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 18.03279F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20.4918F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20.4918F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20.4918F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20.4918F));
-            this.tableLayoutPanel1.Controls.Add(this.lbl_loggedinas, 0, 0);
-            this.tableLayoutPanel1.Controls.Add(this.lbl2, 0, 2);
-            this.tableLayoutPanel1.Controls.Add(lbdriverlist, 0, 3);
-            this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
-            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.RowCount = 5;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 1.854999F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 4.73025F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 2.483381F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 45.46569F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 45.46569F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(1184, 661);
-            this.tableLayoutPanel1.TabIndex = 4;
+            this.button4.Location = new System.Drawing.Point(73, 205);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(97, 23);
+            this.button4.TabIndex = 3;
+            this.button4.Text = "button4";
+            this.button4.UseVisualStyleBackColor = true;
+            // 
+            // button5
+            // 
+            this.button5.Location = new System.Drawing.Point(73, 249);
+            this.button5.Name = "button5";
+            this.button5.Size = new System.Drawing.Size(97, 23);
+            this.button5.TabIndex = 4;
+            this.button5.Text = "button5";
+            this.button5.UseVisualStyleBackColor = true;
+            // 
+            // button6
+            // 
+            this.button6.Location = new System.Drawing.Point(73, 293);
+            this.button6.Name = "button6";
+            this.button6.Size = new System.Drawing.Size(97, 23);
+            this.button6.TabIndex = 5;
+            this.button6.Text = "button6";
+            this.button6.UseVisualStyleBackColor = true;
             // 
             // userinterface
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1184, 661);
-            this.Controls.Add(this.tableLayoutPanel1);
+            this.ClientSize = new System.Drawing.Size(273, 430);
+            this.Controls.Add(this.button6);
+            this.Controls.Add(this.button5);
+            this.Controls.Add(this.button4);
+            this.Controls.Add(this.btnuthozzaadas);
+            this.Controls.Add(this.button2);
+            this.Controls.Add(this.btncegkezeles);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "userinterface";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "TollÚtdíj";
-            this.tableLayoutPanel1.ResumeLayout(false);
-            this.tableLayoutPanel1.PerformLayout();
+            this.Load += new System.EventHandler(this.userinterface_Load);
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private System.Windows.Forms.Label lbl_loggedinas;
-        private System.Windows.Forms.Label lbl2;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
+        private System.Windows.Forms.Button btncegkezeles;
+        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button btnuthozzaadas;
+        private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.Button button5;
+        private System.Windows.Forms.Button button6;
     }
 }

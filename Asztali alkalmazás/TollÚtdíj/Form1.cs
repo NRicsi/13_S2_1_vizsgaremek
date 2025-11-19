@@ -146,7 +146,7 @@ namespace TollÚtdíj
                 string jelszo = txbpass.Text;
 
                 var parancs = kapcsolat.CreateCommand();
-                parancs.CommandText = "SELECT jelszo_hash, aktiv FROM felhasznalok WHERE email = @email";
+                parancs.CommandText = "SELECT id, ceg_id, jelszo_hash, aktiv, role FROM felhasznalok WHERE email = @email";
                 parancs.Parameters.AddWithValue("@email", felhasznalonev);
 
                 var read = parancs.ExecuteReader();
@@ -162,7 +162,8 @@ namespace TollÚtdíj
                 string JelszoHash = read.GetString(0);
                 bool validjelszo = BCrypt.Net.BCrypt.Verify(jelszo, JelszoHash);                            
                 int aktiv = read.GetInt32(1);
-           
+                string szerep = read.GetString("role");
+                int cegId = read.GetInt32("ceg_id");
 
                 if (validjelszo == true)
                 {
@@ -172,8 +173,9 @@ namespace TollÚtdíj
                         UIkisegito.ShowErrorState();
                         return;
                     }
-                    userinterface ui = new userinterface();
+                    userinterface ui = new userinterface(szerep, cegId);
                     ui.ShowDialog();
+
                     this.Close();
                 }
                 else

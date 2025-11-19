@@ -12,9 +12,33 @@ namespace TollÚtdíj
 {
     public partial class userinterface : Form
     {
-        public userinterface()
+        public userinterface(string role, int cegId)
         {
             InitializeComponent();
+
+            if (role == "operator")
+            {
+                this.Text = "TollÚtdíj - Operátor";
+                btncegkezeles.Enabled = false;
+                btnjarmutorles.Enabled = false;
+                btnuthozzaadas.Enabled = false;
+            }
+
+            if (role == "ceg_admin")
+            {
+                this.Text = "TollÚtdíj - Adminisztrátor";
+            }
+
+            if (role == "rendszer_admin")
+            {
+                this.Text = "Rendszer adminisztrátor";
+            }
+        }
+
+
+        private void userinterface_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }
