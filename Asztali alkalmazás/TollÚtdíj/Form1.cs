@@ -153,15 +153,15 @@ namespace TollÚtdíj
 
                 if (!read.HasRows)
                 {
-
+                    lblhibas.Text = "Kérjük, ellenőrizze a jelszavát\r\nés az E-mail címét, majd próbálja újra.";
                     UIkisegito.ShowErrorState();
                     return;
                 }
 
                 read.Read();
-                string JelszoHash = read.GetString(0);
+                string JelszoHash = read.GetString("jelszo_hash");
                 bool validjelszo = BCrypt.Net.BCrypt.Verify(jelszo, JelszoHash);                            
-                int aktiv = read.GetInt32(1);
+                int aktiv = read.GetInt32("aktiv");
                 string szerep = read.GetString("role");
                 int cegId = read.GetInt32("ceg_id");
 
@@ -173,10 +173,12 @@ namespace TollÚtdíj
                         UIkisegito.ShowErrorState();
                         return;
                     }
-                    userinterface ui = new userinterface(szerep, cegId);
-                    ui.ShowDialog();
+                    this.Hide();
+                    userinterface ui = new userinterface(szerep, cegId);     
+                    ui.Closed += (s, args) => this.Close();
+                    ui.Show();
 
-                    this.Close();
+
                 }
                 else
                 {

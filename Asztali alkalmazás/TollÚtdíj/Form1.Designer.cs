@@ -80,7 +80,6 @@ namespace TollÚtdíj
             this.txbusername.Name = "txbusername";
             this.txbusername.Size = new System.Drawing.Size(113, 20);
             this.txbusername.TabIndex = 9;
-            
             // 
             // lbl1
             // 
@@ -108,9 +107,8 @@ namespace TollÚtdíj
             this.lblhibas.ForeColor = System.Drawing.Color.Red;
             this.lblhibas.Location = new System.Drawing.Point(36, 200);
             this.lblhibas.Name = "lblhibas";
-            this.lblhibas.Size = new System.Drawing.Size(183, 32);
+            this.lblhibas.Size = new System.Drawing.Size(0, 16);
             this.lblhibas.TabIndex = 14;
-            this.lblhibas.Text = "Kérjük, ellenőrizze a jelszavát\r\nés az E-mail címét, majd próbálja újra.";
             this.lblhibas.Visible = false;
             // 
             // pbloading
