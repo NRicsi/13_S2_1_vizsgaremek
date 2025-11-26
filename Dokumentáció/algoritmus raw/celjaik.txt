@@ -1,0 +1,21 @@
+Cél – “Login algoritmus” röviden
+A login algoritmus célja, hogy a felhasználó által megadott email–jelszó párost biztonságosan ellenőrizze
+ az adatbázisban tárolt, hash-elt jelszóval szemben. Csak aktív felhasználót enged be, szükség esetén létrehoz
+ egy “maradjak bejelentkezve” session tokent, majd a jogosultsági szintjének megfelelő főfelületre irányítja.
+ Hibás adat vagy inaktív fiók esetén hibaüzenetet ad, és visszatér a bejelentkezési űrlaphoz.
+
+
+Cél – “Role-based főmenü / modulválasztás” röviden
+Ennek az algoritmusnak a célja, hogy a bejelent
+kezett felhasználó szerepköre alapján eldöntse, melyik menüpontok 
+és modulok legyenek elérhetők a főképernyőn. Így egy rendszer szintű adminisztrátor 
+minden modult lát és kezel, a céges adminisztrátor csak a saját cégéhez kapcsolódó admin funkciókat, 
+míg egy operátor csak a számára engedélyezett, szűkebb funkcionalitást éri el. A folyamatábra ennek a 
+döntési logikának a teljes, pontos “térképe” lesz.
+
+Cél – “App indítás + autologin” röviden
+Ennek az algoritmusnak a célja, hogy az alkalmazás indulásakor automatikusan 
+ellenőrizze, van-e korábban eltárolt, még érvényes bejelentkezési azonosító (session token), 
+és ha igen, a felhasználót jelszó megadása nélkül beléptesse a megfelelő főfelületre. 
+Ha nincs ilyen azonosító, vagy az érvénytelen, akkor az algoritmus biztonságosan
+visszairányít a bejelentkezési képernyőre, ahol a normál login folyamat indul.
