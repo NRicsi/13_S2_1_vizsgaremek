@@ -11,7 +11,6 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using BCrypt.Net;
 
-
 namespace TollÚtdíj
 {
     public partial class Login : Form
@@ -32,13 +31,14 @@ namespace TollÚtdíj
                 txbpass,
                 txbusername,
                 lbl1,
-                btnlogin
+                btnlogin,
+                chkrememberme
                 );
         }
 
         private void Login_Load(object sender, EventArgs e)
         {
-            
+
         }
 
         public class Bejelentkezessegito
@@ -52,6 +52,7 @@ namespace TollÚtdíj
             private TextBox txbUsername;
             private Label lbl1;
             private Button btnLogin;
+            private CheckBox chkrememberme;
 
             public Bejelentkezessegito(
                 Label lblHibas,
@@ -62,7 +63,8 @@ namespace TollÚtdíj
                 TextBox txbPass,
                 TextBox txbUsername,
                 Label lbl1,
-                Button btnLogin)
+                Button btnLogin,
+                CheckBox chkrememberme)
             {
                 this.lblHibas = lblHibas;
                 this.pbLoading = pbLoading;
@@ -73,6 +75,7 @@ namespace TollÚtdíj
                 this.txbUsername = txbUsername;
                 this.lbl1 = lbl1;
                 this.btnLogin = btnLogin;
+                this.chkrememberme = chkrememberme;
             }
 
             public void ShowErrorState()
@@ -86,15 +89,16 @@ namespace TollÚtdíj
                 txbUsername.Visible = true;
                 lbl1.Visible = true;
                 btnLogin.Visible = true;
+                chkrememberme.Visible = true;
 
                 txbPass.Text = "";
                 txbPass.Focus();
             }
         }
 
-
         private async void btnlogin_Click_1(object sender, EventArgs e)
         {
+            // egyszerű kliens oldali ellenőrzés
             if (txbusername.Text != "" && txbpass.Text == "")
             {
                 txbpass.Focus();
@@ -106,6 +110,8 @@ namespace TollÚtdíj
                 txbusername.Focus();
                 return;
             }
+
+            // UI elrejtése, loader mutatása
             lblhibas.Visible = false;
             pictureBox1.Visible = false;
             lbluser.Visible = false;
@@ -115,6 +121,7 @@ namespace TollÚtdíj
             txbusername.Visible = false;
             lbl1.Visible = false;
             btnlogin.Visible = false;
+            chkrememberme.Visible = false;
             pbloading.Visible = true;
             await Task.Delay(3000);
 
@@ -126,21 +133,19 @@ namespace TollÚtdíj
                 Password = "mysql",
                 Database = "tollutdijadatbazis"
             };
-            
+
             using (MySqlConnection kapcsolat = new MySqlConnection(build.ConnectionString))
-            {  
+            {
                 try
                 {
                     kapcsolat.Open();
                 }
                 catch (Exception)
                 {
-
                     lblhibas.Text = "Adatbetöltési hiba.\r\nEllenőrizze az internetkapcsolatot, majd próbálja újra.";
                     UIkisegito.ShowErrorState();
                     return;
                 }
-                
 
                 string felhasznalonev = txbusername.Text;
                 string jelszo = txbpass.Text;
@@ -160,12 +165,12 @@ namespace TollÚtdíj
 
                 read.Read();
                 string JelszoHash = read.GetString("jelszo_hash");
-                bool validjelszo = BCrypt.Net.BCrypt.Verify(jelszo, JelszoHash);                            
+                bool validjelszo = BCrypt.Net.BCrypt.Verify(jelszo, JelszoHash);
                 int aktiv = read.GetInt32("aktiv");
                 string szerep = read.GetString("role");
                 int cegId = read.GetInt32("ceg_id");
 
-                if (validjelszo == true)
+                if (validjelszo)
                 {
                     if (aktiv == 0)
                     {
@@ -173,12 +178,50 @@ namespace TollÚtdíj
                         UIkisegito.ShowErrorState();
                         return;
                     }
+
+                    if (chkrememberme.Checked)
+                    {
+                        string sessionToken = Guid.NewGuid().ToString("N");
+
+                        using (var sessionCmd = kapcsolat.CreateCommand())
+                        {
+                            // MINDKÉT időpontot az adatbázis UTC idejéből számoljuk
+                            sessionCmd.CommandText = @"
+                                INSERT INTO felhasznalo_sessionok 
+                                    (felhasznalo_id, token, created_at, lejart_at)
+                                VALUES (
+                                    @felhasznalo_id, 
+                                    @token, 
+                                    UTC_TIMESTAMP(), 
+                                    DATE_ADD(UTC_TIMESTAMP(), INTERVAL 30 MINUTE)
+                                )";
+                            sessionCmd.Parameters.AddWithValue("@felhasznalo_id", read.GetInt32("id"));
+                            sessionCmd.Parameters.AddWithValue("@token", sessionToken);
+
+                            // lezárjuk a readert mielőtt másik parancsot futtatunk ugyanazon a kapcsolaton
+                            read.Close();
+                            sessionCmd.ExecuteNonQuery();
+                        }
+
+                        Properties.Settings.Default.SessionToken = sessionToken;
+                        Properties.Settings.Default.Save();
+                    }
+                    else
+                    {
+                        // ha nincs "maradjak bejelentkezve", ürítjük a tokent
+                        if (!read.IsClosed)
+                        {
+                            read.Close();
+                        }
+                        Properties.Settings.Default.SessionToken = "";
+                        Properties.Settings.Default.Save();
+                    }
+
+                    // sikeres bejelentkezés → fő UI megnyitása
                     this.Hide();
-                    userinterface ui = new userinterface(szerep, cegId);     
+                    userinterface ui = new userinterface(szerep, cegId);
                     ui.Closed += (s, args) => this.Close();
                     ui.Show();
-
-
                 }
                 else
                 {
@@ -186,15 +229,8 @@ namespace TollÚtdíj
                     UIkisegito.ShowErrorState();
                     return;
                 }
-                
             }
+            #endregion
         }
-        #endregion
-
-
-
-
-
-
     }
 }

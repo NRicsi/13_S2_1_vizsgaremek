@@ -16,6 +16,9 @@ namespace TollÚtdíj
         {
             InitializeComponent();
 
+
+            
+
             if (role == "operator")
             {
                 this.Text = "TollÚtdíj - Operátor";
@@ -23,15 +26,13 @@ namespace TollÚtdíj
                 btnjarmutorles.Enabled = false;
                 btnuthozzaadas.Enabled = false;
             }
-
-            if (role == "ceg_admin")
+            else if (role == "ceg_admin")
             {
                 this.Text = "TollÚtdíj - Adminisztrátor";
             }
-
-            if (role == "rendszer_admin")
+            else if (role == "rendszer_admin")
             {
-                this.Text = "Rendszer adminisztrátor";
+                this.Text = "TollÚtdíj - Rendszer adminisztrátor";
             }
         }
 
@@ -39,6 +40,18 @@ namespace TollÚtdíj
         private void userinterface_Load(object sender, EventArgs e)
         {
 
+        }
+        private void btnlogout_Click_1(object sender, EventArgs e)
+        {
+           
+            Properties.Settings.Default.SessionToken = "";
+            Properties.Settings.Default.Save();
+            this.Hide();
+            Login login = new Login();
+            login.Closed += (s, args) => this.Close();
+            login.Show();
+
+            
         }
     }
 }

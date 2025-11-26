@@ -32,7 +32,7 @@
             this.btncegkezeles = new System.Windows.Forms.Button();
             this.btnjarmutorles = new System.Windows.Forms.Button();
             this.btnuthozzaadas = new System.Windows.Forms.Button();
-            this.button4 = new System.Windows.Forms.Button();
+            this.btnlogout = new System.Windows.Forms.Button();
             this.button5 = new System.Windows.Forms.Button();
             this.button6 = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
@@ -67,14 +67,15 @@
             this.btnuthozzaadas.Text = "Út hozzáadás";
             this.btnuthozzaadas.UseVisualStyleBackColor = true;
             // 
-            // button4
+            // btnlogout
             // 
-            this.button4.Location = new System.Drawing.Point(66, 170);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(97, 23);
-            this.button4.TabIndex = 3;
-            this.button4.Text = "button4";
-            this.button4.UseVisualStyleBackColor = true;
+            this.btnlogout.Location = new System.Drawing.Point(12, 226);
+            this.btnlogout.Name = "btnlogout";
+            this.btnlogout.Size = new System.Drawing.Size(97, 23);
+            this.btnlogout.TabIndex = 3;
+            this.btnlogout.Text = "Kijelentkezés";
+            this.btnlogout.UseVisualStyleBackColor = true;
+            this.btnlogout.Click += new System.EventHandler(this.btnlogout_Click_1);
             // 
             // button5
             // 
@@ -112,7 +113,7 @@
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.button6);
             this.Controls.Add(this.button5);
-            this.Controls.Add(this.button4);
+            this.Controls.Add(this.btnlogout);
             this.Controls.Add(this.btnuthozzaadas);
             this.Controls.Add(this.btnjarmutorles);
             this.Controls.Add(this.btncegkezeles);
@@ -133,7 +134,7 @@
         private System.Windows.Forms.Button btncegkezeles;
         private System.Windows.Forms.Button btnjarmutorles;
         private System.Windows.Forms.Button btnuthozzaadas;
-        private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.Button btnlogout;
         private System.Windows.Forms.Button button5;
         private System.Windows.Forms.Button button6;
         private System.Windows.Forms.PictureBox pictureBox1;

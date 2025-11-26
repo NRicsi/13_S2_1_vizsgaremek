@@ -40,6 +40,7 @@ namespace TollÚtdíj
             this.lblhibas = new System.Windows.Forms.Label();
             this.pbloading = new System.Windows.Forms.PictureBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.chkrememberme = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.pbloading)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
@@ -105,7 +106,7 @@ namespace TollÚtdíj
             this.lblhibas.AutoSize = true;
             this.lblhibas.Font = new System.Drawing.Font("Arial Narrow", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.lblhibas.ForeColor = System.Drawing.Color.Red;
-            this.lblhibas.Location = new System.Drawing.Point(36, 200);
+            this.lblhibas.Location = new System.Drawing.Point(31, 216);
             this.lblhibas.Name = "lblhibas";
             this.lblhibas.Size = new System.Drawing.Size(0, 16);
             this.lblhibas.TabIndex = 14;
@@ -131,12 +132,23 @@ namespace TollÚtdíj
             this.pictureBox1.TabIndex = 13;
             this.pictureBox1.TabStop = false;
             // 
+            // chkrememberme
+            // 
+            this.chkrememberme.AutoSize = true;
+            this.chkrememberme.Location = new System.Drawing.Point(60, 199);
+            this.chkrememberme.Name = "chkrememberme";
+            this.chkrememberme.Size = new System.Drawing.Size(139, 17);
+            this.chkrememberme.TabIndex = 16;
+            this.chkrememberme.Text = "Maradjak bejelentkezve";
+            this.chkrememberme.UseVisualStyleBackColor = true;
+            // 
             // Login
             // 
             this.AcceptButton = this.btnlogin;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(544, 261);
+            this.Controls.Add(this.chkrememberme);
             this.Controls.Add(this.lblhibas);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.lblpass);
@@ -173,6 +185,7 @@ namespace TollÚtdíj
         private System.Windows.Forms.Button btnlogin;
         private System.Windows.Forms.Label lblhibas;
         private System.Windows.Forms.PictureBox pbloading;
+        private System.Windows.Forms.CheckBox chkrememberme;
     }
 }
 

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Gép: localhost
--- Létrehozás ideje: 2025. Nov 19. 11:13
+-- Létrehozás ideje: 2025. Nov 26. 11:28
 -- Kiszolgáló verziója: 8.0.42
 -- PHP verzió: 8.2.29
 
@@ -75,6 +75,20 @@ INSERT INTO `felhasznalok` (`id`, `ceg_id`, `email`, `jelszo_hash`, `teljes_nev`
 (4, 3, 'jozsi.demo@gmail.com', '$2y$10$YyQofnv673Cqg/ZZEg/QYuJyrEslN8L1H1ZI/2kcPDrH0VupDpctK', 'Demo Józsi', 1, '2025-11-18 08:41:55', 'operator'),
 (5, 4, 'hubiii@gmail.com', '$2y$10$mNhtsYI5rOA.HzyA1Je5/uLcuTiR4q30E8/crRN5Y4ERWAvY9ccMm', 'Nagy Huba', 0, '2025-11-18 09:08:29', 'operator'),
 (6, 1, 'placeholder1@demo.hu', '$2y$10$xesnsmm9fLlElCpBODbnSenLzZVuVEOYm7SqBuerLeb/Ii.NDen.S', 'Demo G', 1, '2025-11-18 09:16:44', 'operator');
+
+-- --------------------------------------------------------
+
+--
+-- Tábla szerkezet ehhez a táblához `felhasznalo_sessionok`
+--
+
+CREATE TABLE `felhasznalo_sessionok` (
+  `id` int NOT NULL,
+  `felhasznalo_id` int NOT NULL,
+  `token` varchar(64) COLLATE utf8mb4_general_ci NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `lejart_at` timestamp NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -278,6 +292,13 @@ ALTER TABLE `felhasznalok`
   ADD KEY `ceg_id` (`ceg_id`);
 
 --
+-- A tábla indexei `felhasznalo_sessionok`
+--
+ALTER TABLE `felhasznalo_sessionok`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `felhasznalo_id` (`felhasznalo_id`);
+
+--
 -- A tábla indexei `jarmuvek`
 --
 ALTER TABLE `jarmuvek`
@@ -381,6 +402,12 @@ ALTER TABLE `felhasznalok`
   MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
+-- AUTO_INCREMENT a táblához `felhasznalo_sessionok`
+--
+ALTER TABLE `felhasznalo_sessionok`
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
 -- AUTO_INCREMENT a táblához `jarmuvek`
 --
 ALTER TABLE `jarmuvek`
@@ -455,6 +482,12 @@ ALTER TABLE `utvonalak`
 --
 ALTER TABLE `felhasznalok`
   ADD CONSTRAINT `felhasznalok_ibfk_1` FOREIGN KEY (`ceg_id`) REFERENCES `cegek` (`id`);
+
+--
+-- Megkötések a táblához `felhasznalo_sessionok`
+--
+ALTER TABLE `felhasznalo_sessionok`
+  ADD CONSTRAINT `felhasznalo_sessionok_ibfk_1` FOREIGN KEY (`felhasznalo_id`) REFERENCES `felhasznalok` (`id`);
 
 --
 -- Megkötések a táblához `jarmuvek`
