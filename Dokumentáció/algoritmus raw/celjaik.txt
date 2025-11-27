@@ -32,3 +32,17 @@ Ennek az algoritmusnak a célja, hogy egy külön „Cégek kezelése” modulba
 
 6Cél – „Sofőrök CRUD röviden
 A sofőrök modul célja, hogy egy adott céghez tartozó sofőrök adatait biztonságosan és áttekinthetően lehessen kezelni. A folyamat lehetővé teszi a sofőrök listázását, új sofőr felvételét, meglévő sofőr adatainak módosítását, illetve szükség esetén a sofőrök inaktiválását (helyettesítve a törlést). A modul ciklikusan működik: minden művelet után friss listát mutat, egészen addig, amíg a felhasználó be nem zárja a modult.
+
+7Cél - Az algoritmus célja, hogy a jogosítványokra vonatkozó adatokat (személy, kategória, érvényesség, stb.) egy adatbázisban biztonságosan kezelje: új rekordot hozzon létre, meglévőt megjelenítsen, módosítson vagy töröljön.
+A folyamatábra áttekinthetően mutatja be, hogy a felhasználó milyen lépésekben tud CRUD-műveleteket végezni, és milyen ellenőrzések (pl. adatellenőrzés, jogosítvány létezése) történnek közben.
+A cél egy olyan vizuális algoritmus, amely nyelvfüggetlenül is érthető, csak általános folyamatábra-elemeket használva.
+
+8Cél - Az algoritmus célja, hogy a tracker eszközök adatait (név, azonosító, típus, státusz stb.) egy központi adatbázisban egységesen kezelje: új eszköz felvétele, meglévő adatainak megtekintése, módosítása és törlése.
+A folyamatábra szemléletesen mutatja be, hogyan lép végig a felhasználó ezeken a CRUD-műveleteken, és hol történnek ellenőrzések (pl. létezik-e már az eszköz, helyesek-e az adatok).
+A cél egy olyan nyelvfüggetlen vizuális algoritmus, amely csak általános folyamatábra-elemeket használ, kód-szintű részletek nélkül.
+
+9Cél - Az algoritmus célja, hogy a járművek adatait (pl. rendszám, típus, évjárat, tulajdonos, státusz) egy adatbázisban egységesen kezelje: új jármű felvétele, meglévő adatainak megtekintése, módosítása és törlése.
+A folyamatábra vizuálisan, lépésről lépésre mutatja be, hogyan választ a felhasználó CRUD-műveletek között, milyen ellenőrzések történnek (érvényes adatok, létező jármű, stb.), és hogyan tér vissza a fő menübe.
+A cél egy nyelvfüggetlen, tiszta algoritmusábrázolás, ahol nincsenek programnyelvi kulcsszavak, csak általános, érthető folyamatleírások.
+
+10Cél - 
