@@ -45,4 +45,18 @@ A cél egy olyan nyelvfüggetlen vizuális algoritmus, amely csak általános fo
 A folyamatábra vizuálisan, lépésről lépésre mutatja be, hogyan választ a felhasználó CRUD-műveletek között, milyen ellenőrzések történnek (érvényes adatok, létező jármű, stb.), és hogyan tér vissza a fő menübe.
 A cél egy nyelvfüggetlen, tiszta algoritmusábrázolás, ahol nincsenek programnyelvi kulcsszavak, csak általános, érthető folyamatleírások.
 
-10Cél - 
+10Cél - Az algoritmus célja, hogy egy RFID kártyát biztonságosan hozzárendeljünk egy kiválasztott személyhez vagy eszközhöz (pl. dolgozó, jármű, tracker).
+A folyamatábra lépésről lépésre mutatja meg, hogyan választja ki a felhasználó a célt, hogyan olvassa be a rendszer az RFID kártyát, hogyan ellenőrzi, hogy a kártya már használatban van‑e, és hogyan történik a mentés.
+A rajz nyelvfüggetlen: csak általános folyamatábra‑elemeket használ, programnyelvi kulcsszavak nélkül.
+
+11Cél - Az algoritmus célja, hogy a menet indítását (pl. jármű elindulása) szabályozottan, ellenőrzötten hajtsa végre: azonosítja a sofőrt, kiválasztja a járművet, ellenőrzi a jogosultságokat (érvényes jogosítvány, hozzárendelt RFID kártya stb.), majd eltárolja a menet kezdetének adatait.
+A folyamatábra lépésről lépésre bemutatja, hogyan halad végig a felhasználó ezen a folyamaton, hol történnek ellenőrzések, és mikor indulhat el ténylegesen a menet.
+A rajz teljesen nyelvfüggetlen: programnyelvi kulcsszavakat nem tartalmaz, csak általános, érthető folyamatleírásokat.
+
+12Cél - Az algoritmus célja, hogy egy már futó menetet szabályosan lezárjon: megkeresi az adott sofőrhöz és járműhöz tartozó nyitott menetet, bekéri a lezáráshoz szükséges adatokat (záró időpont, záró kilométeróra‑állás, esetleges hibák), ellenőrzi azok érvényességét, majd lezárja és elmenti a menetet.
+A folyamatábra bemutatja, milyen lépésekben történik a lezárás, milyen ellenőrzéseket végez a rendszer (van‑e nyitott menet, konzisztens‑e a távolság, hiánytalanok‑e az adatok), és hogyan tér vissza a fő menübe vagy fejeződik be a művelet.
+A diagram nyelvfüggetlen, nem tartalmaz programnyelvi kulcsszavakat, csak általános, érthető lépéseket.
+
+13Cél - Az algoritmus célja, hogy egy RFID kártya beolvasása után megbízhatóan eldöntse, hogy az adott kártya érvényes‑e, engedélyezett‑e, és melyik belső entitáshoz (pl. személyhez, járműhöz, eszközhöz) tartozik.
+A belső logika ellenőrzi a kártya azonosítójának formátumát, meglétét az adatbázisban, státuszát (aktív, tiltott, lejárt), valamint az adott helyzetre vonatkozó jogosultsági szabályokat, majd ennek alapján engedélyez vagy megtagad egy további műveletet.
+A folyamatábra nyelvfüggetlen módon, csak általános folyamatábra‑elemekkel mutatja be ezt a döntési logikát.
