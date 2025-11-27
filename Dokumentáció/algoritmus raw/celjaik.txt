@@ -60,3 +60,7 @@ A diagram nyelvfüggetlen, nem tartalmaz programnyelvi kulcsszavakat, csak álta
 13Cél - Az algoritmus célja, hogy egy RFID kártya beolvasása után megbízhatóan eldöntse, hogy az adott kártya érvényes‑e, engedélyezett‑e, és melyik belső entitáshoz (pl. személyhez, járműhöz, eszközhöz) tartozik.
 A belső logika ellenőrzi a kártya azonosítójának formátumát, meglétét az adatbázisban, státuszát (aktív, tiltott, lejárt), valamint az adott helyzetre vonatkozó jogosultsági szabályokat, majd ennek alapján engedélyez vagy megtagad egy további műveletet.
 A folyamatábra nyelvfüggetlen módon, csak általános folyamatábra‑elemekkel mutatja be ezt a döntési logikát.
+
+14Cél - Az algoritmus célja, hogy egy külső forrásból (pl. jármű fedélzeti egységéből vagy tracker eszközből) érkező GPS pozíciót fogadjon, ellenőrizze annak érvényességét (formátum, időbélyeg, koordináták tartománya), majd belső, egységesített formában eltárolja.
+A folyamatábra bemutatja, hogyan jön be az adat, milyen lépésekben történik a hibakezelés (hiányos üzenet, rossz formátum, túl régi pozíció), és mikor tekinti a rendszer a pozíciót sikeresen fogadottnak.
+A diagram teljesen nyelvfüggetlen: nem használ programnyelvi kulcsszavakat, csak általános, érthető folyamat‑lépéseket.
