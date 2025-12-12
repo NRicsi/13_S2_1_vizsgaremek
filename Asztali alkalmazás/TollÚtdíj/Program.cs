@@ -18,18 +18,18 @@ namespace TollÚtdíj
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
-            // 1. Megnézzük, van-e elmentett session token
+            
             string sessionToken = Properties.Settings.Default.SessionToken;
 
             if (!string.IsNullOrEmpty(sessionToken) &&
                 TryGetUserFromSession(sessionToken, out string role, out int cegId))
             {
-                // Van ÉRVÉNYES session → azonnal a bejelentkezett felület indul
+                
                 Application.Run(new userinterface(role, cegId));
             }
             else
             {
-                // NINCS érvényes session (nincs token vagy lejárt) → normál login
+                
                 Application.Run(new Login());
             }
         }
@@ -55,7 +55,7 @@ namespace TollÚtdíj
                 }
                 catch
                 {
-                    // ha nem elérhető a DB, akkor ne autologin-oljunk
+                    
                     return false;
                 }
 
@@ -72,14 +72,14 @@ namespace TollÚtdíj
                 {
                     if (!read.Read())
                     {
-                        // token lejárt vagy nem létezik
+                        
                         return false;
                     }
 
                     int aktiv = read.GetInt32("aktiv");
                     if (aktiv == 0)
                     {
-                        // időközben inaktív lett a felhasználó
+                        
                         return false;
                     }
 

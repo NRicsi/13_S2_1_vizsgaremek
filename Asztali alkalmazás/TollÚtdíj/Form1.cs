@@ -98,7 +98,7 @@ namespace TollÚtdíj
 
         private async void btnlogin_Click_1(object sender, EventArgs e)
         {
-            // egyszerű kliens oldali ellenőrzés
+            
             if (txbusername.Text != "" && txbpass.Text == "")
             {
                 txbpass.Focus();
@@ -111,7 +111,7 @@ namespace TollÚtdíj
                 return;
             }
 
-            // UI elrejtése, loader mutatása
+            
             lblhibas.Visible = false;
             pictureBox1.Visible = false;
             lbluser.Visible = false;
@@ -123,7 +123,7 @@ namespace TollÚtdíj
             btnlogin.Visible = false;
             chkrememberme.Visible = false;
             pbloading.Visible = true;
-            await Task.Delay(3000);
+            
 
             #region Backend
             MySqlConnectionStringBuilder build = new MySqlConnectionStringBuilder
@@ -185,7 +185,7 @@ namespace TollÚtdíj
 
                         using (var sessionCmd = kapcsolat.CreateCommand())
                         {
-                            // MINDKÉT időpontot az adatbázis UTC idejéből számoljuk
+                            
                             sessionCmd.CommandText = @"
                                 INSERT INTO felhasznalo_sessionok 
                                     (felhasznalo_id, token, created_at, lejart_at)
@@ -198,7 +198,7 @@ namespace TollÚtdíj
                             sessionCmd.Parameters.AddWithValue("@felhasznalo_id", read.GetInt32("id"));
                             sessionCmd.Parameters.AddWithValue("@token", sessionToken);
 
-                            // lezárjuk a readert mielőtt másik parancsot futtatunk ugyanazon a kapcsolaton
+                            
                             read.Close();
                             sessionCmd.ExecuteNonQuery();
                         }
@@ -208,7 +208,7 @@ namespace TollÚtdíj
                     }
                     else
                     {
-                        // ha nincs "maradjak bejelentkezve", ürítjük a tokent
+                        
                         if (!read.IsClosed)
                         {
                             read.Close();
@@ -217,7 +217,7 @@ namespace TollÚtdíj
                         Properties.Settings.Default.Save();
                     }
 
-                    // sikeres bejelentkezés → fő UI megnyitása
+                    
                     this.Hide();
                     userinterface ui = new userinterface(szerep, cegId);
                     ui.Closed += (s, args) => this.Close();
