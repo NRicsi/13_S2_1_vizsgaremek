@@ -3,7 +3,11 @@
   "WorkspaceRootPath": "C:\\Users\\SimiczZalan\\Documents\\GitHub\\13_S2_1_vizsgaremek\\Asztali alkalmaz\u00E1s\\Toll\u00DAtd\u00EDj\\",
   "Documents": [
     {
+<<<<<<< HEAD
       "AbsoluteMoniker": "D:0:0:{AE8A4366-5B2A-4CC9-BDD2-270E94D646CF}|Toll\u00DAtd\u00EDj.csproj|c:\\users\\simiczzalan\\documents\\github\\13_s2_1_vizsgaremek\\asztali alkalmaz\u00E1s\\toll\u00FAtd\u00EDj\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+=======
+      "AbsoluteMoniker": "D:0:0:{AE8A4366-5B2A-4CC9-BDD2-270E94D646CF}|Toll\u00DAtd\u00EDj.csproj|C:\\Users\\bobanpetrik\\Documents\\GitHub\\13_S2_1_vizsgaremek\\Asztali alkalmaz\u00E1s\\Toll\u00DAtd\u00EDj\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+>>>>>>> 3dbe388d289d01089ef7d394b9fb590744fc7182
       "RelativeMoniker": "D:0:0:{AE8A4366-5B2A-4CC9-BDD2-270E94D646CF}|Toll\u00DAtd\u00EDj.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
@@ -11,19 +15,32 @@
       "RelativeMoniker": "D:0:0:{AE8A4366-5B2A-4CC9-BDD2-270E94D646CF}|Toll\u00DAtd\u00EDj.csproj|solutionrelative:form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
+<<<<<<< HEAD
       "AbsoluteMoniker": "D:0:0:{AE8A4366-5B2A-4CC9-BDD2-270E94D646CF}|Toll\u00DAtd\u00EDj.csproj|C:\\Users\\SimiczZalan\\Documents\\GitHub\\13_S2_1_vizsgaremek\\Asztali alkalmaz\u00E1s\\Toll\u00DAtd\u00EDj\\form2.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{AE8A4366-5B2A-4CC9-BDD2-270E94D646CF}|Toll\u00DAtd\u00EDj.csproj|solutionrelative:form2.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+=======
+      "AbsoluteMoniker": "D:0:0:{00000000-0000-0000-0000-000000000000}|\u003CSolution\u003E|Toll\u00DAtd\u00EDj||{04B8AB82-A572-4FEF-95CE-5222444B6B64}|"
+>>>>>>> 3dbe388d289d01089ef7d394b9fb590744fc7182
     },
     {
       "AbsoluteMoniker": "D:0:0:{AE8A4366-5B2A-4CC9-BDD2-270E94D646CF}|Toll\u00DAtd\u00EDj.csproj|C:\\Users\\SimiczZalan\\Documents\\GitHub\\13_S2_1_vizsgaremek\\Asztali alkalmaz\u00E1s\\Toll\u00DAtd\u00EDj\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
       "RelativeMoniker": "D:0:0:{AE8A4366-5B2A-4CC9-BDD2-270E94D646CF}|Toll\u00DAtd\u00EDj.csproj|solutionrelative:form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
+<<<<<<< HEAD
       "AbsoluteMoniker": "D:0:0:{AE8A4366-5B2A-4CC9-BDD2-270E94D646CF}|Toll\u00DAtd\u00EDj.csproj|C:\\Users\\SimiczZalan\\Documents\\GitHub\\13_S2_1_vizsgaremek\\Asztali alkalmaz\u00E1s\\Toll\u00DAtd\u00EDj\\form2.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+=======
+      "AbsoluteMoniker": "D:0:0:{AE8A4366-5B2A-4CC9-BDD2-270E94D646CF}|Toll\u00DAtd\u00EDj.csproj|C:\\Users\\bobanpetrik\\Documents\\GitHub\\13_S2_1_vizsgaremek\\Asztali alkalmaz\u00E1s\\Toll\u00DAtd\u00EDj\\form2.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AE8A4366-5B2A-4CC9-BDD2-270E94D646CF}|Toll\u00DAtd\u00EDj.csproj|solutionrelative:form2.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AE8A4366-5B2A-4CC9-BDD2-270E94D646CF}|Toll\u00DAtd\u00EDj.csproj|C:\\Users\\bobanpetrik\\Documents\\GitHub\\13_S2_1_vizsgaremek\\Asztali alkalmaz\u00E1s\\Toll\u00DAtd\u00EDj\\form2.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+>>>>>>> 3dbe388d289d01089ef7d394b9fb590744fc7182
       "RelativeMoniker": "D:0:0:{AE8A4366-5B2A-4CC9-BDD2-270E94D646CF}|Toll\u00DAtd\u00EDj.csproj|solutionrelative:form2.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{00000000-0000-0000-0000-000000000000}|\u003CSolution\u003E|Toll\u00DAtd\u00EDj||{04B8AB82-A572-4FEF-95CE-5222444B6B64}|"
+      "AbsoluteMoniker": "D:0:0:{AE8A4366-5B2A-4CC9-BDD2-270E94D646CF}|Toll\u00DAtd\u00EDj.csproj|c:\\users\\bobanpetrik\\documents\\github\\13_s2_1_vizsgaremek\\asztali alkalmaz\u00E1s\\toll\u00FAtd\u00EDj\\properties\\settings.settings||{6D2695F9-5365-4A78-89ED-F205C045BFE6}",
+      "RelativeMoniker": "D:0:0:{AE8A4366-5B2A-4CC9-BDD2-270E94D646CF}|Toll\u00DAtd\u00EDj.csproj|solutionrelative:properties\\settings.settings||{6D2695F9-5365-4A78-89ED-F205C045BFE6}"
     }
   ],
   "DocumentGroupContainers": [
@@ -47,7 +64,7 @@
               "RelativeDocumentMoniker": "Program.cs",
               "ToolTip": "C:\\Users\\SimiczZalan\\Documents\\GitHub\\13_S2_1_vizsgaremek\\Asztali alkalmaz\u00E1s\\Toll\u00DAtd\u00EDj\\Program.cs",
               "RelativeToolTip": "Program.cs",
-              "ViewState": "AgIAADgAAAAAAAAAAAAAwFoAAAAJAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAB4AAAANAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-11-26T11:07:44.135Z",
               "EditorCaption": ""
@@ -60,20 +77,21 @@
               "RelativeDocumentMoniker": "Form1.cs",
               "ToolTip": "C:\\Users\\SimiczZalan\\Documents\\GitHub\\13_S2_1_vizsgaremek\\Asztali alkalmaz\u00E1s\\Toll\u00DAtd\u00EDj\\Form1.cs",
               "RelativeToolTip": "Form1.cs",
-              "ViewState": "AgIAAMUAAAAAAAAAAAAiwOwAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAJYAAAAAAAAAAAAmwIIAAAATAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-09-19T06:53:49.469Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 2,
               "Title": "Toll\u00DAtd\u00EDj",
               "DocumentMoniker": "C:\\Users\\SimiczZalan\\Documents\\GitHub\\13_S2_1_vizsgaremek\\Asztali alkalmaz\u00E1s\\Toll\u00DAtd\u00EDj\\Toll\u00DAtd\u00EDj.csproj",
               "RelativeDocumentMoniker": "Toll\u00DAtd\u00EDj.csproj",
               "ToolTip": "C:\\Users\\SimiczZalan\\Documents\\GitHub\\13_S2_1_vizsgaremek\\Asztali alkalmaz\u00E1s\\Toll\u00DAtd\u00EDj\\Toll\u00DAtd\u00EDj.csproj",
               "RelativeToolTip": "Toll\u00DAtd\u00EDj.csproj",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
-              "WhenOpened": "2025-11-26T10:42:17.667Z"
+              "WhenOpened": "2025-11-26T10:42:17.667Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -88,7 +106,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 4,
               "Title": "Form2.cs",
               "DocumentMoniker": "C:\\Users\\SimiczZalan\\Documents\\GitHub\\13_S2_1_vizsgaremek\\Asztali alkalmaz\u00E1s\\Toll\u00DAtd\u00EDj\\Form2.cs",
               "RelativeDocumentMoniker": "Form2.cs",
@@ -100,7 +118,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 5,
               "Title": "Form2.cs [Design]",
               "DocumentMoniker": "C:\\Users\\SimiczZalan\\Documents\\GitHub\\13_S2_1_vizsgaremek\\Asztali alkalmaz\u00E1s\\Toll\u00DAtd\u00EDj\\Form2.cs",
               "RelativeDocumentMoniker": "Form2.cs",
@@ -108,6 +126,16 @@
               "RelativeToolTip": "..\\..\\..\\..\\..\\..\\bobanpetrik\\Documents\\GitHub\\13_S2_1_vizsgaremek\\Asztali alkalmaz\u00E1s\\Toll\u00DAtd\u00EDj\\Form2.cs [Design]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-09-19T07:22:28.615Z"
+            }
+          ]
+        },
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": -1,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{b1e99781-ab81-11d0-b683-00aa00a3ee26}"
             }
           ]
         },
