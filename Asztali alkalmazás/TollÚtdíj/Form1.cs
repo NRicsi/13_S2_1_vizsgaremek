@@ -96,7 +96,7 @@ namespace TollÚtdíj
             }
         }
 
-        private async void btnlogin_Click_1(object sender, EventArgs e)
+        private void btnlogin_Click_1(object sender, EventArgs e)
         {
             
             if (txbusername.Text != "" && txbpass.Text == "")
@@ -133,6 +133,8 @@ namespace TollÚtdíj
                 Password = "mysql",
                 Database = "tollutdijadatbazis"
             };
+
+
 
             using (MySqlConnection kapcsolat = new MySqlConnection(build.ConnectionString))
             {
@@ -217,10 +219,12 @@ namespace TollÚtdíj
                         Properties.Settings.Default.Save();
                     }
 
-                    
+
+
                     this.Hide();
-                    userinterface ui = new userinterface(szerep, cegId);
-                    ui.Closed += (s, args) => this.Close();
+                    var ui = new userinterface(szerep, cegId);
+                    ui.FormClosed += (s, args) => { this.Show(); this.Activate(); };
+                    this.Hide();
                     ui.Show();
                 }
                 else

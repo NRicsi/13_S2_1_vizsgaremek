@@ -100,6 +100,12 @@ F:\github\13_S2_1_vizsgaremek\Asztali alkalmazás\TollÚtdíj\obj\Debug\TollÚtd
 F:\github\13_S2_1_vizsgaremek\Asztali alkalmazás\TollÚtdíj\obj\Debug\TollÚtdíj.csproj.Up2Date
 F:\github\13_S2_1_vizsgaremek\Asztali alkalmazás\TollÚtdíj\obj\Debug\TollÚtdíj.exe
 F:\github\13_S2_1_vizsgaremek\Asztali alkalmazás\TollÚtdíj\obj\Debug\TollÚtdíj.pdb
+<<<<<<< Updated upstream
+=======
+<<<<<<< HEAD
+C:\Users\bobanpetrik\Documents\GitHub\13_S2_1_vizsgaremek\Asztali alkalmazás\TollÚtdíj\obj\Debug\TollÚtdíj.cegkezeles.resources
+=======
+>>>>>>> Stashed changes
 C:\Users\SimiczZalan\Documents\GitHub\13_S2_1_vizsgaremek\Asztali alkalmazás\TollÚtdíj\bin\Debug\TollÚtdíj.exe.config
 C:\Users\SimiczZalan\Documents\GitHub\13_S2_1_vizsgaremek\Asztali alkalmazás\TollÚtdíj\bin\Debug\TollÚtdíj.exe
 C:\Users\SimiczZalan\Documents\GitHub\13_S2_1_vizsgaremek\Asztali alkalmazás\TollÚtdíj\bin\Debug\TollÚtdíj.pdb
@@ -135,3 +141,7 @@ C:\Users\SimiczZalan\Documents\GitHub\13_S2_1_vizsgaremek\Asztali alkalmazás\To
 C:\Users\SimiczZalan\Documents\GitHub\13_S2_1_vizsgaremek\Asztali alkalmazás\TollÚtdíj\obj\Debug\TollÚtdíj.csproj.Up2Date
 C:\Users\SimiczZalan\Documents\GitHub\13_S2_1_vizsgaremek\Asztali alkalmazás\TollÚtdíj\obj\Debug\TollÚtdíj.exe
 C:\Users\SimiczZalan\Documents\GitHub\13_S2_1_vizsgaremek\Asztali alkalmazás\TollÚtdíj\obj\Debug\TollÚtdíj.pdb
+<<<<<<< Updated upstream
+=======
+>>>>>>> df4302fc370f77fe8c3b6127c299e62ad25ff2c5
+>>>>>>> Stashed changes

@@ -48,6 +48,7 @@
             this.btncegkezeles.Text = "Cégek kezelése";
             this.btncegkezeles.UseCompatibleTextRendering = true;
             this.btncegkezeles.UseVisualStyleBackColor = true;
+            this.btncegkezeles.Click += new System.EventHandler(this.btncegkezeles_Click);
             // 
             // btnjarmutorles
             // 

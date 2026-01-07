@@ -12,12 +12,15 @@ namespace TollÚtdíj
 {
     public partial class userinterface : Form
     {
+        private string role;
+        private int cegId;
         public userinterface(string role, int cegId)
         {
             InitializeComponent();
+            this.role = role;
+            this.cegId = cegId;
 
 
-            
 
             if (role == "operator")
             {
@@ -52,6 +55,35 @@ namespace TollÚtdíj
             login.Show();
 
             
+        }
+
+        private void btncegkezeles_Click(object sender, EventArgs e)
+        {
+            var f = new cegkezeles(role, cegId);
+
+            // amikor a gyerekform bezáródik (X vagy Close), jöjjön vissza az UI
+            f.FormClosed += (s, args) =>
+            {
+                this.Show();
+                this.Activate();
+            };
+
+            this.Hide();
+            f.Show();
+        }
+
+
+
+        private void userinterface_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            // X-re ne álljon le a program
+            e.Cancel = true;
+
+            // vissza Loginra
+            if (this.Owner != null)
+                this.Owner.Show();
+
+            this.Hide(); // az UI eltűnik
         }
     }
 }
