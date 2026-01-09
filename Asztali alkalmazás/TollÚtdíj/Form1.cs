@@ -21,10 +21,8 @@ namespace TollÚtdíj
         {
             InitializeComponent();
             this.ActiveControl = txbusername;
-            pbloading.Visible = false;
             UIkisegito = new Bejelentkezessegito(
                 lblhibas,
-                pbloading,
                 pictureBox1,
                 lbluser,
                 lblpass,
@@ -44,7 +42,6 @@ namespace TollÚtdíj
         public class Bejelentkezessegito
         {
             private Label lblHibas;
-            private PictureBox pbLoading;
             private PictureBox pictureBox1;
             private Label lblUser;
             private Label lblPass;
@@ -56,7 +53,6 @@ namespace TollÚtdíj
 
             public Bejelentkezessegito(
                 Label lblHibas,
-                PictureBox pbLoading,
                 PictureBox pictureBox1,
                 Label lblUser,
                 Label lblPass,
@@ -67,7 +63,6 @@ namespace TollÚtdíj
                 CheckBox chkrememberme)
             {
                 this.lblHibas = lblHibas;
-                this.pbLoading = pbLoading;
                 this.pictureBox1 = pictureBox1;
                 this.lblUser = lblUser;
                 this.lblPass = lblPass;
@@ -81,7 +76,6 @@ namespace TollÚtdíj
             public void ShowErrorState()
             {
                 lblHibas.Visible = true;
-                pbLoading.Visible = false;
                 pictureBox1.Visible = true;
                 lblUser.Visible = true;
                 lblPass.Visible = true;
@@ -122,7 +116,7 @@ namespace TollÚtdíj
             lbl1.Visible = false;
             btnlogin.Visible = false;
             chkrememberme.Visible = false;
-            pbloading.Visible = true;
+            
             
 
             #region Backend

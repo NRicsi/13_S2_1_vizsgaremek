@@ -19,7 +19,7 @@ namespace TollÚtdíj
             InitializeComponent();
             this.role = role;
             this.cegId = cegId;
-
+            
 
 
             if (role == "operator")

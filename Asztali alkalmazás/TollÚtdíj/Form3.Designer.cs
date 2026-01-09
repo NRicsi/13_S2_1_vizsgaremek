@@ -30,8 +30,12 @@
         {
             this.lblhibas = new System.Windows.Forms.Label();
             this.lsbceglista = new System.Windows.Forms.ListBox();
-            this.button1 = new System.Windows.Forms.Button();
+            this.btnmentes = new System.Windows.Forms.Button();
             this.btnvissza = new System.Windows.Forms.Button();
+            this.txbcegnev = new System.Windows.Forms.TextBox();
+            this.txbcegszam = new System.Windows.Forms.TextBox();
+            this.txbcegcim = new System.Windows.Forms.TextBox();
+            this.lbladatok = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // lblhibas
@@ -49,15 +53,17 @@
             this.lsbceglista.Name = "lsbceglista";
             this.lsbceglista.Size = new System.Drawing.Size(120, 277);
             this.lsbceglista.TabIndex = 1;
+            this.lsbceglista.SelectedIndexChanged += new System.EventHandler(this.lsbceglista_SelectedIndexChanged_1);
             // 
-            // button1
+            // btnmentes
             // 
-            this.button1.Location = new System.Drawing.Point(179, 67);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(101, 38);
-            this.button1.TabIndex = 2;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = true;
+            this.btnmentes.Location = new System.Drawing.Point(153, 210);
+            this.btnmentes.Name = "btnmentes";
+            this.btnmentes.Size = new System.Drawing.Size(101, 38);
+            this.btnmentes.TabIndex = 2;
+            this.btnmentes.Text = "Változtatások mentése";
+            this.btnmentes.UseVisualStyleBackColor = true;
+            this.btnmentes.Click += new System.EventHandler(this.btnmentes_Click);
             // 
             // btnvissza
             // 
@@ -69,13 +75,47 @@
             this.btnvissza.UseVisualStyleBackColor = true;
             this.btnvissza.Click += new System.EventHandler(this.btnvissza_Click);
             // 
+            // txbcegnev
+            // 
+            this.txbcegnev.Location = new System.Drawing.Point(139, 88);
+            this.txbcegnev.Name = "txbcegnev";
+            this.txbcegnev.Size = new System.Drawing.Size(134, 20);
+            this.txbcegnev.TabIndex = 4;
+            // 
+            // txbcegszam
+            // 
+            this.txbcegszam.Location = new System.Drawing.Point(139, 129);
+            this.txbcegszam.Name = "txbcegszam";
+            this.txbcegszam.Size = new System.Drawing.Size(134, 20);
+            this.txbcegszam.TabIndex = 5;
+            // 
+            // txbcegcim
+            // 
+            this.txbcegcim.Location = new System.Drawing.Point(139, 170);
+            this.txbcegcim.Name = "txbcegcim";
+            this.txbcegcim.Size = new System.Drawing.Size(134, 20);
+            this.txbcegcim.TabIndex = 6;
+            // 
+            // lbladatok
+            // 
+            this.lbladatok.AutoSize = true;
+            this.lbladatok.Location = new System.Drawing.Point(181, 67);
+            this.lbladatok.Name = "lbladatok";
+            this.lbladatok.Size = new System.Drawing.Size(44, 13);
+            this.lbladatok.TabIndex = 7;
+            this.lbladatok.Text = "Adatok:";
+            // 
             // cegkezeles
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.lbladatok);
+            this.Controls.Add(this.txbcegcim);
+            this.Controls.Add(this.txbcegszam);
+            this.Controls.Add(this.txbcegnev);
             this.Controls.Add(this.btnvissza);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.btnmentes);
             this.Controls.Add(this.lsbceglista);
             this.Controls.Add(this.lblhibas);
             this.Name = "cegkezeles";
@@ -90,7 +130,11 @@
 
         private System.Windows.Forms.Label lblhibas;
         private System.Windows.Forms.ListBox lsbceglista;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnmentes;
         private System.Windows.Forms.Button btnvissza;
+        private System.Windows.Forms.TextBox txbcegnev;
+        private System.Windows.Forms.TextBox txbcegszam;
+        private System.Windows.Forms.TextBox txbcegcim;
+        private System.Windows.Forms.Label lbladatok;
     }
 }

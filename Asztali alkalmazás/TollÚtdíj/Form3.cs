@@ -23,10 +23,29 @@ namespace TollÚtdíj
             this.role = role;
             this.cegId = cegId;
 
+            
+            btnmentes.Visible = false;
+            txbcegcim.Visible = false;
+            txbcegnev.Visible = false;
+            txbcegszam.Visible = false;
+            lbladatok.Visible = false;
+            txbcegnev.Multiline = true;
+            txbcegnev.AutoSize = true;
+            txbcegnev.ScrollBars = ScrollBars.None;
+            txbcegcim.Multiline = true;
+            txbcegcim.AutoSize = true;
+            txbcegcim.ScrollBars = ScrollBars.None;
+            txbcegszam.Multiline = true;
+            txbcegszam.AutoSize = true;
+            txbcegszam.ScrollBars = ScrollBars.None;
+
             if (role == "operator")
             {
                 this.Text = "Cégkezelés - Operátor";
-               
+                txbcegcim.Enabled = false;
+                txbcegnev.Enabled = false;
+                txbcegszam.Enabled = false;
+                btnmentes.Visible = false;
             }
             else if (role == "ceg_admin")
             {
@@ -38,6 +57,55 @@ namespace TollÚtdíj
             }
         }
 
+        private void CegAdatokBetoltese(string cegNev)
+        {
+            MySqlConnectionStringBuilder build = new MySqlConnectionStringBuilder
+            {
+                Server = "localhost",
+                UserID = "root",
+                Password = "mysql",
+                Database = "tollutdijadatbazis"
+            };
+
+            using (MySqlConnection kapcsolat = new MySqlConnection(build.ConnectionString))
+            {
+                try
+                {
+                    kapcsolat.Open();
+                }
+                catch
+                {
+                    lblhibas.Text = "Adatlekérdezési hiba.";
+                    lblhibas.Visible = true;
+                    return;
+                }
+
+                var parancs = kapcsolat.CreateCommand();
+                parancs.CommandText = @"
+            SELECT nev, cim, adoszam
+            FROM cegek
+            WHERE nev = @nev
+            LIMIT 1";
+
+                parancs.Parameters.AddWithValue("@nev", cegNev);
+
+                using (var reader = parancs.ExecuteReader())
+                {
+                    if (reader.Read())
+                    {
+                        txbcegnev.Text = reader["nev"].ToString();
+                        txbcegcim.Text = reader["cim"].ToString();
+                        txbcegszam.Text = reader["adoszam"].ToString();
+                    }
+                }
+
+                txbcegcim.Visible = true;
+                txbcegnev.Visible = true;
+                txbcegszam.Visible = true;
+                lbladatok.Visible = true;
+                btnmentes.Visible = true;
+            }
+        }
 
         private void Form3_Load(object sender, EventArgs e)
         {
@@ -103,11 +171,67 @@ namespace TollÚtdíj
             }
         }
 
+        
+
+
         private void btnvissza_Click(object sender, EventArgs e)
         {
             this.Close();
         }
 
+        private void lsbceglista_SelectedIndexChanged_1(object sender, EventArgs e)
+        {
+            if (lsbceglista.SelectedItem == null)
+                return;
 
+            string cegNev = lsbceglista.SelectedItem.ToString();
+            CegAdatokBetoltese(cegNev);
+        }
+
+        private void btnmentes_Click(object sender, EventArgs e)
+        {
+            MySqlConnectionStringBuilder build = new MySqlConnectionStringBuilder
+            {
+                Server = "localhost",
+                UserID = "root",
+                Password = "mysql",
+                Database = "tollutdijadatbazis"
+            };
+
+            using (MySqlConnection kapcsolat = new MySqlConnection(build.ConnectionString))
+            {
+                try
+                {
+                    kapcsolat.Open();
+                }
+                catch
+                {
+                    MessageBox.Show("Nem sikerült csatlakozni az adatbázishoz.");
+                    return;
+                }
+
+                var parancs = kapcsolat.CreateCommand();
+                parancs.CommandText = @"
+            UPDATE cegek
+            SET nev = @nev,
+                cim = @cim,
+                adoszam = @adoszam
+            WHERE id = @cegId";
+
+                parancs.Parameters.AddWithValue("@nev", txbcegnev.Text.Trim());
+                parancs.Parameters.AddWithValue("@cim", txbcegcim.Text.Trim());
+                parancs.Parameters.AddWithValue("@adoszam", txbcegszam.Text.Trim());
+                parancs.Parameters.AddWithValue("@cegId", cegId);
+                try
+                {
+                    parancs.ExecuteNonQuery();
+                    MessageBox.Show("Sikeres mentés!");
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Hiba mentés közben:\n" + ex.Message);
+                }
+            }
+        }
     }
 }

@@ -38,10 +38,8 @@ namespace TollÚtdíj
             this.lbl1 = new System.Windows.Forms.Label();
             this.btnlogin = new System.Windows.Forms.Button();
             this.lblhibas = new System.Windows.Forms.Label();
-            this.pbloading = new System.Windows.Forms.PictureBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.chkrememberme = new System.Windows.Forms.CheckBox();
-            ((System.ComponentModel.ISupportInitialize)(this.pbloading)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -112,16 +110,6 @@ namespace TollÚtdíj
             this.lblhibas.TabIndex = 14;
             this.lblhibas.Visible = false;
             // 
-            // pbloading
-            // 
-            this.pbloading.Image = ((System.Drawing.Image)(resources.GetObject("pbloading.Image")));
-            this.pbloading.Location = new System.Drawing.Point(136, 12);
-            this.pbloading.Name = "pbloading";
-            this.pbloading.Size = new System.Drawing.Size(242, 220);
-            this.pbloading.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pbloading.TabIndex = 15;
-            this.pbloading.TabStop = false;
-            // 
             // pictureBox1
             // 
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
@@ -157,7 +145,6 @@ namespace TollÚtdíj
             this.Controls.Add(this.txbusername);
             this.Controls.Add(this.lbl1);
             this.Controls.Add(this.btnlogin);
-            this.Controls.Add(this.pbloading);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MaximumSize = new System.Drawing.Size(560, 300);
@@ -167,7 +154,6 @@ namespace TollÚtdíj
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Bejelentkezés";
             this.Load += new System.EventHandler(this.Login_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.pbloading)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -184,7 +170,6 @@ namespace TollÚtdíj
         private System.Windows.Forms.Label lbl1;
         private System.Windows.Forms.Button btnlogin;
         private System.Windows.Forms.Label lblhibas;
-        private System.Windows.Forms.PictureBox pbloading;
         private System.Windows.Forms.CheckBox chkrememberme;
     }
 }
